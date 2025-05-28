@@ -1055,619 +1055,634 @@
                     <p>Calculate your Return on Investment (ROI) with WARP's inbound consolidation solutions for optimized freight management.</p>
                     
                     <div class="info-box">
-                        <div class="info-icon">i</div>
-                        <div class="text">
-                            This calculator helps you understand the financial impact of implementing WARP's inbound consolidation solutions. It focuses on cost savings from improved trailer utilization, reduced accessorial fees, and operational efficiency improvements. <strong>Try the AI Assistant</strong> - just describe your operations in plain English!
+                        <div class="tabs">
+                            <button class="tab active" onclick="showTab('inbound')">Inbound Consolidation</button>
+                            <button class="tab" onclick="showTab('zone-skipping')">Zone Skipping</button>
+                            <button class="tab" onclick="showTab('pool-point')">Pool Distribution</button>
                         </div>
-                        <a href="#" class="learn-more">Learn more</a>
+            
+                        <!-- Inbound Vendor Consolidation -->
+                        <div id="inbound" class="tab-content active">
+                            <div class="calculator-header">
+                                <h2>ROI Calculator</h2>
+                                <p>Calculate your Return on Investment (ROI) with WARP's inbound consolidation solutions for optimized freight management.</p>
+                                
+                                <div class="info-box">
+                                    <div class="info-icon">i</div>
+                                    <div class="text">
+                                        This calculator helps you understand the financial impact of implementing WARP's inbound consolidation solutions. It focuses on cost savings from improved trailer utilization, reduced accessorial fees, and operational efficiency improvements. <strong>Try the AI Assistant</strong> - just describe your operations in plain English!
+                                    </div>
+                                    <a href="#" class="learn-more">Learn more</a>
+                                </div>
+                            </div>
+            
+                            <div class="input-section">
+                                <h3>Input Your Data</h3>
+                                <div class="input-grid">
+                                    <div class="input-group">
+                                        <label>Vendors Shipping Inbound</label>
+                                        <input type="number" id="inbound-vendors" value="50">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Inbound Shipments per Week</label>
+                                        <input type="number" id="inbound-shipments" value="100">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Cost per LTL Shipment ($)</label>
+                                        <input type="number" id="inbound-cost-ltl" value="250">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Pallets per Shipment</label>
+                                        <input type="number" id="inbound-pallets" value="4">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Accessorial Charges per Week ($)</label>
+                                        <input type="number" id="inbound-accessorial" value="1000">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Appointment Costs per Week ($)</label>
+                                        <input type="number" id="inbound-appointment" value="500">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Trailer Utilization Rate (%)</label>
+                                        <input type="number" id="inbound-utilization" value="40" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Dock Doors Available</label>
+                                        <input type="number" id="inbound-doors" value="8">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Labor Cost per Week ($)</label>
+                                        <input type="number" id="inbound-labor" value="2000">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Damage Rate (%)</label>
+                                        <input type="number" id="inbound-damage-rate" value="2" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Detention Hours per Week</label>
+                                        <input type="number" id="inbound-detention" value="10">
+                                    </div>
+                                </div>
+                                
+                                <button class="calculate-btn" onclick="calculateInbound()">Calculate ROI</button>
+                            </div>
+            
+                            <div class="benchmarks-section">
+                                <h4>WARP Optimization Benchmarks</h4>
+                                <div class="benchmark-grid">
+                                    <div class="benchmark-item">
+                                        <span class="label">Milkrun Cost per Vendor/Week</span>
+                                        <span class="value">$100</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Trailer Fill Rate Improvement</span>
+                                        <span class="value">85%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Accessorial Fee Elimination</span>
+                                        <span class="value">90%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Congestion Reduction</span>
+                                        <span class="value">50%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Damage Rate Reduction</span>
+                                        <span class="value">50%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Labor Efficiency Gain</span>
+                                        <span class="value">20%</span>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div id="inbound-results" class="results-section">
+                                <div class="results-header">
+                                    <h3>With WARP</h3>
+                                </div>
+                                <div class="results-content">
+                                    <div class="results-grid">
+                                        <div class="result-card">
+                                            <div class="label">Projected Annual Cost</div>
+                                            <div class="value cost" id="inbound-projected-cost">$260,000</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Annual Savings</div>
+                                            <div class="value savings" id="inbound-total-savings">$1,582,100</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Current Annual Cost</div>
+                                            <div class="value cost" id="inbound-current-cost">$1,300,000</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Monthly Savings</div>
+                                            <div class="value savings" id="inbound-monthly-savings">$131,842</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Transportation Savings</div>
+                                            <div class="value savings" id="inbound-transport-savings">$1,462,500</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Operational Efficiency Gains</div>
+                                            <div class="value savings" id="inbound-operational-savings">$119,600</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="roi-card">
+                                        <div class="label">Return on Investment (ROI)</div>
+                                        <div class="value" id="inbound-roi">121.7%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Zone Skipping -->
+                        <div id="zone-skipping" class="tab-content">
+                            <div class="calculator-header">
+                                <h2>ROI Calculator</h2>
+                                <p>Calculate your Return on Investment (ROI) with WARP's zone skipping solutions for retail and direct-to-consumer businesses.</p>
+                                
+                                <div class="info-box">
+                                    <div class="info-icon">i</div>
+                                    <div class="text">
+                                        This calculator helps you understand the financial impact of implementing WARP's zone skipping solutions for your retail or DTC business. It focuses on cost savings from reduced shipping costs, damage reduction, and revenue improvements from faster delivery times and increased average order values. <strong>Try the AI Assistant</strong> - just describe your shipping operations!
+                                    </div>
+                                    <a href="#" class="learn-more">Learn more</a>
+                                </div>
+                            </div>
+            
+                            <div class="input-section">
+                                <h3>Input Your Data</h3>
+                                <div class="input-grid">
+                                    <div class="input-group">
+                                        <label>Weekly Parcel Volume</label>
+                                        <input type="number" id="zone-volume" value="10000">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Average Cost per Parcel ($)</label>
+                                        <input type="number" id="zone-cost" value="8.00" step="0.01">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Shipping State</label>
+                                        <select id="zone-state">
+                                            <option value="california">California</option>
+                                            <option value="texas">Texas</option>
+                                            <option value="florida">Florida</option>
+                                            <option value="new-york">New York</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Time in Transit (days)</label>
+                                        <input type="number" id="zone-delivery-speed" value="4.5" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Sort Center Touches</label>
+                                        <input type="number" id="zone-touches" value="3">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Current Damage Rate (%)</label>
+                                        <input type="number" id="zone-damage-rate" value="2" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Cart Abandonment Rate (%)</label>
+                                        <input type="number" id="zone-abandonment" value="70" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Average Order Value ($)</label>
+                                        <input type="number" id="zone-aov" value="75" step="0.01">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Customer Lifetime Value ($)</label>
+                                        <input type="number" id="zone-cltv" value="250" step="0.01">
+                                    </div>
+                                </div>
+                                
+                                <button class="calculate-btn" onclick="calculateZoneSkipping()">Calculate ROI</button>
+                            </div>
+            
+                            <div class="benchmarks-section">
+                                <h4>WARP Optimization Benchmarks</h4>
+                                <div class="benchmark-grid">
+                                    <div class="benchmark-item">
+                                        <span class="label">Zone Penalty Eliminated</span>
+                                        <span class="value">$2.50</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Bulk Linehaul Savings</span>
+                                        <span class="value">$1.50</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Sort Center Touches</span>
+                                        <span class="value">2</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Speed Improvement</span>
+                                        <span class="value">2.5 days</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Damage Reduction</span>
+                                        <span class="value">50%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Conversion Improvement</span>
+                                        <span class="value">10%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">AOV Improvement</span>
+                                        <span class="value">5%</span>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div id="zone-results" class="results-section">
+                                <div class="results-header">
+                                    <h3>With WARP</h3>
+                                </div>
+                                <div class="results-content">
+                                    <div class="results-grid">
+                                        <div class="result-card">
+                                            <div class="label">Projected Weekly Shipping Cost</div>
+                                            <div class="value cost" id="zone-projected-cost">$65,000</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Weekly Shipping Savings</div>
+                                            <div class="value savings" id="zone-shipping-savings">$40,000</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Weekly Damage Cost</div>
+                                            <div class="value cost" id="zone-damage-cost">$5,313</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Weekly Damage Savings</div>
+                                            <div class="value savings" id="zone-damage-savings">$2,656</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Additional Revenue from Faster Delivery</div>
+                                            <div class="value revenue" id="zone-conversion-revenue">$52,500</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Additional AOV Upsell Revenue</div>
+                                            <div class="value revenue" id="zone-aov-revenue">$11,250</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Total Weekly Value Creation</div>
+                                            <div class="value savings" id="zone-weekly-value">$107,500</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Total Annual Value Creation</div>
+                                            <div class="value savings" id="zone-total-value">$5,590,000</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">WARP Time in Transit</div>
+                                            <div class="value cost" id="zone-warp-transit">1.0 days</div>
+                                            <div class="improvement">↑ 2.5 day faster</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="roi-card">
+                                        <div class="label">Return on Investment (ROI)</div>
+                                        <div class="value" id="zone-roi">102.4%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Pool Point Distribution -->
+                        <div id="pool-point" class="tab-content">
+                            <div class="calculator-header">
+                                <h2>ROI Calculator</h2>
+                                <p>Calculate your Return on Investment (ROI) with WARP's pool point distribution solutions for optimized store delivery networks.</p>
+                                
+                                <div class="info-box">
+                                    <div class="info-icon">i</div>
+                                    <div class="text">
+                                        This calculator helps you understand the financial impact of implementing WARP's pool distribution solutions. It focuses on cost savings from consolidated freight injection, route optimization, and operational efficiency improvements. <strong>Try the AI Assistant</strong> - describe your distribution network!
+                                    </div>
+                                    <a href="#" class="learn-more">Learn more</a>
+                                </div>
+                            </div>
+            
+                            <div class="input-section">
+                                <h3>Input Your Data</h3>
+                                <div class="input-grid">
+                                    <div class="input-group">
+                                        <label>Weekly Store Shipments</label>
+                                        <input type="number" id="pool-shipments" value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Cost per Store Delivery ($)</label>
+                                        <input type="number" id="pool-cost" value="150" step="0.01">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Store Delivery Locations</label>
+                                        <input type="number" id="pool-locations" value="50">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Pallets per Store Shipment</label>
+                                        <input type="number" id="pool-pallets" value="3">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Miles per Store Delivery</label>
+                                        <input type="number" id="pool-miles" value="60">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Delivery Frequency per Week</label>
+                                        <input type="number" id="pool-frequency" value="3" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Backroom Wait Time (hours)</label>
+                                        <input type="number" id="pool-congestion" value="1.5" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>On-Time Delivery Rate (%)</label>
+                                        <input type="number" id="pool-ontime" value="85" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Weekly Inventory Carrying Cost ($)</label>
+                                        <input type="number" id="pool-inventory-cost" value="2000">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Driver Shortage Impact (%)</label>
+                                        <input type="number" id="pool-driver-shortage" value="10" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>CO2 Emissions per Mile (lbs)</label>
+                                        <input type="number" id="pool-emissions" value="1.5" step="0.1">
+                                    </div>
+                                </div>
+                                
+                                <button class="calculate-btn" onclick="calculatePoolPoint()">Calculate ROI</button>
+                            </div>
+            
+                            <div class="benchmarks-section">
+                                <h4>WARP Optimization Benchmarks</h4>
+                                <div class="benchmark-grid">
+                                    <div class="benchmark-item">
+                                        <span class="label">Pool Point Injections</span>
+                                        <span class="value">Regional</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Linehaul Distance Reduction</span>
+                                        <span class="value">40%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Final-Mile Route Optimization</span>
+                                        <span class="value">35%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Stop Density Improvement</span>
+                                        <span class="value">25%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Delivery Frequency Control</span>
+                                        <span class="value">2.5x</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Cost per Stop Reduction</span>
+                                        <span class="value">30%</span>
+                                    </div>
+                                    <div class="benchmark-item">
+                                        <span class="label">Inventory Holding Reduction</span>
+                                        <span class="value">15%</span>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div id="pool-results" class="results-section">
+                                <div class="results-header">
+                                    <h3>With WARP</h3>
+                                </div>
+                                <div class="results-content">
+                                    <div class="results-grid">
+                                        <div class="result-card">
+                                            <div class="label">Projected Annual Cost</div>
+                                            <div class="value cost" id="pool-projected-cost">$936,000</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Annual Savings</div>
+                                            <div class="value savings" id="pool-total-savings">$732,680</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Current Annual Cost</div>
+                                            <div class="value cost" id="pool-current-cost">$1,560,000</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Monthly Savings</div>
+                                            <div class="value savings" id="pool-monthly-savings">$61,057</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Transportation Savings</div>
+                                            <div class="value savings" id="pool-transport-savings">$624,000</div>
+                                        </div>
+                                        <div class="result-card">
+                                            <div class="label">Operational Improvements</div>
+                                            <div class="value savings" id="pool-operational-savings">$108,680</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="roi-card">
+                                        <div class="label">Return on Investment (ROI)</div>
+                                        <div class="value" id="pool-roi">47.0%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="input-section">
-                    <h3>Input Your Data</h3>
-                    <div class="input-grid">
-                        <div class="input-group">
-                            <label>Vendors Shipping Inbound</label>
-                            <input type="number" id="inbound-vendors" value="50">
-                        </div>
-                        <div class="input-group">
-                            <label>Inbound Shipments per Week</label>
-                            <input type="number" id="inbound-shipments" value="100">
-                        </div>
-                        <div class="input-group">
-                            <label>Cost per LTL Shipment ($)</label>
-                            <input type="number" id="inbound-cost-ltl" value="250">
-                        </div>
-                        <div class="input-group">
-                            <label>Pallets per Shipment</label>
-                            <input type="number" id="inbound-pallets" value="4">
-                        </div>
-                        <div class="input-group">
-                            <label>Accessorial Charges per Week ($)</label>
-                            <input type="number" id="inbound-accessorial" value="1000">
-                        </div>
-                        <div class="input-group">
-                            <label>Appointment Costs per Week ($)</label>
-                            <input type="number" id="inbound-appointment" value="500">
-                        </div>
-                        <div class="input-group">
-                            <label>Trailer Utilization Rate (%)</label>
-                            <input type="number" id="inbound-utilization" value="40" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label>Dock Doors Available</label>
-                            <input type="number" id="inbound-doors" value="8">
-                        </div>
-                        <div class="input-group">
-                            <label>Labor Cost per Week ($)</label>
-                            <input type="number" id="inbound-labor" value="2000">
-                        </div>
-                        <div class="input-group">
-                            <label>Damage Rate (%)</label>
-                            <input type="number" id="inbound-damage-rate" value="2" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label>Detention Hours per Week</label>
-                            <input type="number" id="inbound-detention" value="10">
+            
+                <!-- AI Chatbot Overlay -->
+                <div id="ai-chatbot-overlay" class="ai-chatbot-overlay">
+                    <div class="chatbot-header">
+                        <h3>
+                            Logistics AI Assistant 
+                            <span class="ai-badge">GPT-4</span>
+                        </h3>
+                        <button id="close-chatbot" class="close-chatbot">&times;</button>
+                    </div>
+                    <div class="chatbot-messages" id="chatbot-messages">
+                        <div class="message bot">
+                            <div>Hi! I'm your logistics AI assistant. I can help you fill out the ROI calculator by understanding your operations in plain English.</div>
+                            <div style="margin-top: 10px; font-size: 0.8rem; color: #888;">Try saying something like:</div>
+                            <div class="quick-suggestions">
+                                <button class="suggestion-btn" onclick="sendSuggestion('We have 50 vendors shipping 200 LTLs per week at $250 each')">50 vendors, 200 LTLs/week</button>
+                                <button class="suggestion-btn" onclick="sendSuggestion('We ship 10,000 parcels weekly, costs $8 per parcel, 4.5 day transit time')">10k parcels weekly</button>
+                                <button class="suggestion-btn" onclick="sendSuggestion('200 store deliveries per week, $150 per delivery, 50 locations')">Store deliveries</button>
+                            </div>
                         </div>
                     </div>
+                    <div class="chatbot-input">
+                        <div class="input-container">
+                            <textarea 
+                                id="chatbot-textarea" 
+                                placeholder="Describe your logistics operations..."
+                                rows="1"
+                            ></textarea>
+                            <button id="send-btn" class="send-btn" onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Usage Analytics Overlay -->
+                <div id="usage-overlay" class="usage-overlay">
+                    <div class="usage-header">
+                        <h3>Usage Analytics</h3>
+                        <button id="close-usage" class="close-usage">&times;</button>
+                    </div>
+                    <div class="usage-content">
+                        <div class="usage-stat">
+                            <div class="stat-label">Total Sessions</div>
+                            <div class="stat-value" id="total-sessions">1</div>
+                        </div>
+                        <div class="usage-stat">
+                            <div class="stat-label">Current Session Time</div>
+                            <div class="stat-value" id="session-time">00:00</div>
+                        </div>
+                        <div class="usage-stat">
+                            <div class="stat-label">Calculations Run</div>
+                            <div class="stat-value" id="calculations-count">0</div>
+                        </div>
+                        <div class="usage-stat">
+                            <div class="stat-label">AI Interactions</div>
+                            <div class="stat-value" id="ai-interactions">0</div>
+                        </div>
+                        <div class="usage-stat">
+                            <div class="stat-label">Most Used Calculator</div>
+                            <div class="stat-value" id="most-used">Inbound</div>
+                        </div>
+                        <div class="usage-stat">
+                            <div class="stat-label">Last Login</div>
+                            <div class="stat-value" id="last-login">Now</div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Supabase Client -->
+                <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+                
+                <script>
+                    // Configuration
+                    const supabaseUrl = 'https://guxoatwimcuexshreomo.supabase.co'
+                    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1eG9hdHdpbWN1ZXhzaHJlb21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg0NTQ2MjcsImV4cCI6MjA2NDAzMDYyN30.jTFkHcCBSudUEeQg32OEPwirkf5r4sVXHKUXjZu5qYw'
+                    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
                     
-                    <button class="calculate-btn" onclick="calculateInbound()">Calculate ROI</button>
-                </div>
-
-                <div class="benchmarks-section">
-                    <h4>WARP Optimization Benchmarks</h4>
-                    <div class="benchmark-grid">
-                        <div class="benchmark-item">
-                            <span class="label">Milkrun Cost per Vendor/Week</span>
-                            <span class="value">$100</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Trailer Fill Rate Improvement</span>
-                            <span class="value">85%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Accessorial Fee Elimination</span>
-                            <span class="value">90%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Congestion Reduction</span>
-                            <span class="value">50%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Damage Rate Reduction</span>
-                            <span class="value">50%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Labor Efficiency Gain</span>
-                            <span class="value">20%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="inbound-results" class="results-section">
-                    <div class="results-header">
-                        <h3>With WARP</h3>
-                    </div>
-                    <div class="results-content">
-                        <div class="results-grid">
-                            <div class="result-card">
-                                <div class="label">Projected Annual Cost</div>
-                                <div class="value cost" id="inbound-projected-cost">$260,000</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Annual Savings</div>
-                                <div class="value savings" id="inbound-total-savings">$1,582,100</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Current Annual Cost</div>
-                                <div class="value cost" id="inbound-current-cost">$1,300,000</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Monthly Savings</div>
-                                <div class="value savings" id="inbound-monthly-savings">$131,842</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Transportation Savings</div>
-                                <div class="value savings" id="inbound-transport-savings">$1,462,500</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Operational Efficiency Gains</div>
-                                <div class="value savings" id="inbound-operational-savings">$119,600</div>
-                            </div>
-                        </div>
-                        
-                        <div class="roi-card">
-                            <div class="label">Return on Investment (ROI)</div>
-                            <div class="value" id="inbound-roi">121.7%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Zone Skipping -->
-            <div id="zone-skipping" class="tab-content">
-                <div class="calculator-header">
-                    <h2>ROI Calculator</h2>
-                    <p>Calculate your Return on Investment (ROI) with WARP's zone skipping solutions for retail and direct-to-consumer businesses.</p>
-                    
-                    <div class="info-box">
-                        <div class="info-icon">i</div>
-                        <div class="text">
-                            This calculator helps you understand the financial impact of implementing WARP's zone skipping solutions for your retail or DTC business. It focuses on cost savings from reduced shipping costs, damage reduction, and revenue improvements from faster delivery times and increased average order values. <strong>Try the AI Assistant</strong> - just describe your shipping operations!
-                        </div>
-                        <a href="#" class="learn-more">Learn more</a>
-                    </div>
-                </div>
-
-                <div class="input-section">
-                    <h3>Input Your Data</h3>
-                    <div class="input-grid">
-                        <div class="input-group">
-                            <label>Weekly Parcel Volume</label>
-                            <input type="number" id="zone-volume" value="10000">
-                        </div>
-                        <div class="input-group">
-                            <label>Average Cost per Parcel ($)</label>
-                            <input type="number" id="zone-cost" value="8.00" step="0.01">
-                        </div>
-                        <div class="input-group">
-                            <label>Shipping State</label>
-                            <select id="zone-state">
-                                <option value="california">California</option>
-                                <option value="texas">Texas</option>
-                                <option value="florida">Florida</option>
-                                <option value="new-york">New York</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <label>Time in Transit (days)</label>
-                            <input type="number" id="zone-delivery-speed" value="4.5" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label>Sort Center Touches</label>
-                            <input type="number" id="zone-touches" value="3">
-                        </div>
-                        <div class="input-group">
-                            <label>Current Damage Rate (%)</label>
-                            <input type="number" id="zone-damage-rate" value="2" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label>Cart Abandonment Rate (%)</label>
-                            <input type="number" id="zone-abandonment" value="70" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label>Average Order Value ($)</label>
-                            <input type="number" id="zone-aov" value="75" step="0.01">
-                        </div>
-                        <div class="input-group">
-                            <label>Customer Lifetime Value ($)</label>
-                            <input type="number" id="zone-cltv" value="250" step="0.01">
-                        </div>
-                    </div>
-                    
-                    <button class="calculate-btn" onclick="calculateZoneSkipping()">Calculate ROI</button>
-                </div>
-
-                <div class="benchmarks-section">
-                    <h4>WARP Optimization Benchmarks</h4>
-                    <div class="benchmark-grid">
-                        <div class="benchmark-item">
-                            <span class="label">Zone Penalty Eliminated</span>
-                            <span class="value">$2.50</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Bulk Linehaul Savings</span>
-                            <span class="value">$1.50</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Sort Center Touches</span>
-                            <span class="value">2</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Speed Improvement</span>
-                            <span class="value">2.5 days</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Damage Reduction</span>
-                            <span class="value">50%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Conversion Improvement</span>
-                            <span class="value">10%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">AOV Improvement</span>
-                            <span class="value">5%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="zone-results" class="results-section">
-                    <div class="results-header">
-                        <h3>With WARP</h3>
-                    </div>
-                    <div class="results-content">
-                        <div class="results-grid">
-                            <div class="result-card">
-                                <div class="label">Projected Weekly Shipping Cost</div>
-                                <div class="value cost" id="zone-projected-cost">$65,000</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Weekly Shipping Savings</div>
-                                <div class="value savings" id="zone-shipping-savings">$40,000</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Weekly Damage Cost</div>
-                                <div class="value cost" id="zone-damage-cost">$5,313</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Weekly Damage Savings</div>
-                                <div class="value savings" id="zone-damage-savings">$2,656</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Additional Revenue from Faster Delivery</div>
-                                <div class="value revenue" id="zone-conversion-revenue">$52,500</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Additional AOV Upsell Revenue</div>
-                                <div class="value revenue" id="zone-aov-revenue">$11,250</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Total Weekly Value Creation</div>
-                                <div class="value savings" id="zone-weekly-value">$107,500</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Total Annual Value Creation</div>
-                                <div class="value savings" id="zone-total-value">$5,590,000</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">WARP Time in Transit</div>
-                                <div class="value cost" id="zone-warp-transit">1.0 days</div>
-                                <div class="improvement">↑ 2.5 day faster</div>
-                            </div>
-                        </div>
-                        
-                        <div class="roi-card">
-                            <div class="label">Return on Investment (ROI)</div>
-                            <div class="value" id="zone-roi">102.4%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pool Point Distribution -->
-            <div id="pool-point" class="tab-content">
-                <div class="calculator-header">
-                    <h2>ROI Calculator</h2>
-                    <p>Calculate your Return on Investment (ROI) with WARP's pool point distribution solutions for optimized store delivery networks.</p>
-                    
-                    <div class="info-box">
-                        <div class="info-icon">i</div>
-                        <div class="text">
-                            This calculator helps you understand the financial impact of implementing WARP's pool distribution solutions. It focuses on cost savings from consolidated freight injection, route optimization, and operational efficiency improvements. <strong>Try the AI Assistant</strong> - describe your distribution network!
-                        </div>
-                        <a href="#" class="learn-more">Learn more</a>
-                    </div>
-                </div>
-
-                <div class="input-section">
-                    <h3>Input Your Data</h3>
-                    <div class="input-grid">
-                        <div class="input-group">
-                            <label>Weekly Store Shipments</label>
-                            <input type="number" id="pool-shipments" value="200">
-                        </div>
-                        <div class="input-group">
-                            <label>Cost per Store Delivery ($)</label>
-                            <input type="number" id="pool-cost" value="150" step="0.01">
-                        </div>
-                        <div class="input-group">
-                            <label>Store Delivery Locations</label>
-                            <input type="number" id="pool-locations" value="50">
-                        </div>
-                        <div class="input-group">
-                            <label>Pallets per Store Shipment</label>
-                            <input type="number" id="pool-pallets" value="3">
-                        </div>
-                        <div class="input-group">
-                            <label>Miles per Store Delivery</label>
-                            <input type="number" id="pool-miles" value="60">
-                        </div>
-                        <div class="input-group">
-                            <label>Delivery Frequency per Week</label>
-                            <input type="number" id="pool-frequency" value="3" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label>Backroom Wait Time (hours)</label>
-                            <input type="number" id="pool-congestion" value="1.5" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label>On-Time Delivery Rate (%)</label>
-                            <input type="number" id="pool-ontime" value="85" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label>Weekly Inventory Carrying Cost ($)</label>
-                            <input type="number" id="pool-inventory-cost" value="2000">
-                        </div>
-                        <div class="input-group">
-                            <label>Driver Shortage Impact (%)</label>
-                            <input type="number" id="pool-driver-shortage" value="10" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label>CO2 Emissions per Mile (lbs)</label>
-                            <input type="number" id="pool-emissions" value="1.5" step="0.1">
-                        </div>
-                    </div>
-                    
-                    <button class="calculate-btn" onclick="calculatePoolPoint()">Calculate ROI</button>
-                </div>
-
-                <div class="benchmarks-section">
-                    <h4>WARP Optimization Benchmarks</h4>
-                    <div class="benchmark-grid">
-                        <div class="benchmark-item">
-                            <span class="label">Pool Point Injections</span>
-                            <span class="value">Regional</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Linehaul Distance Reduction</span>
-                            <span class="value">40%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Final-Mile Route Optimization</span>
-                            <span class="value">35%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Stop Density Improvement</span>
-                            <span class="value">25%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Delivery Frequency Control</span>
-                            <span class="value">2.5x</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Cost per Stop Reduction</span>
-                            <span class="value">30%</span>
-                        </div>
-                        <div class="benchmark-item">
-                            <span class="label">Inventory Holding Reduction</span>
-                            <span class="value">15%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="pool-results" class="results-section">
-                    <div class="results-header">
-                        <h3>With WARP</h3>
-                    </div>
-                    <div class="results-content">
-                        <div class="results-grid">
-                            <div class="result-card">
-                                <div class="label">Projected Annual Cost</div>
-                                <div class="value cost" id="pool-projected-cost">$936,000</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Annual Savings</div>
-                                <div class="value savings" id="pool-total-savings">$732,680</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Current Annual Cost</div>
-                                <div class="value cost" id="pool-current-cost">$1,560,000</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Monthly Savings</div>
-                                <div class="value savings" id="pool-monthly-savings">$61,057</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Transportation Savings</div>
-                                <div class="value savings" id="pool-transport-savings">$624,000</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="label">Operational Improvements</div>
-                                <div class="value savings" id="pool-operational-savings">$108,680</div>
-                            </div>
-                        </div>
-                        
-                        <div class="roi-card">
-                            <div class="label">Return on Investment (ROI)</div>
-                            <div class="value" id="pool-roi">47.0%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- AI Chatbot Overlay -->
-    <div id="ai-chatbot-overlay" class="ai-chatbot-overlay">
-        <div class="chatbot-header">
-            <h3>
-                Logistics AI Assistant 
-                <span class="ai-badge">GPT-4</span>
-            </h3>
-            <button id="close-chatbot" class="close-chatbot">&times;</button>
-        </div>
-        <div class="chatbot-messages" id="chatbot-messages">
-            <div class="message bot">
-                <div>Hi! I'm your logistics AI assistant. I can help you fill out the ROI calculator by understanding your operations in plain English.</div>
-                <div style="margin-top: 10px; font-size: 0.8rem; color: #888;">Try saying something like:</div>
-                <div class="quick-suggestions">
-                    <button class="suggestion-btn" onclick="sendSuggestion('We have 50 vendors shipping 200 LTLs per week at $250 each')">50 vendors, 200 LTLs/week</button>
-                    <button class="suggestion-btn" onclick="sendSuggestion('We ship 10,000 parcels weekly, costs $8 per parcel, 4.5 day transit time')">10k parcels weekly</button>
-                    <button class="suggestion-btn" onclick="sendSuggestion('200 store deliveries per week, $150 per delivery, 50 locations')">Store deliveries</button>
-                </div>
-            </div>
-        </div>
-        <div class="chatbot-input">
-            <div class="input-container">
-                <textarea 
-                    id="chatbot-textarea" 
-                    placeholder="Describe your logistics operations..."
-                    rows="1"
-                ></textarea>
-                <button id="send-btn" class="send-btn" onclick="sendMessage()">Send</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Usage Analytics Overlay -->
-    <div id="usage-overlay" class="usage-overlay">
-        <div class="usage-header">
-            <h3>Usage Analytics</h3>
-            <button id="close-usage" class="close-usage">&times;</button>
-        </div>
-        <div class="usage-content">
-            <div class="usage-stat">
-                <div class="stat-label">Total Sessions</div>
-                <div class="stat-value" id="total-sessions">1</div>
-            </div>
-            <div class="usage-stat">
-                <div class="stat-label">Current Session Time</div>
-                <div class="stat-value" id="session-time">00:00</div>
-            </div>
-            <div class="usage-stat">
-                <div class="stat-label">Calculations Run</div>
-                <div class="stat-value" id="calculations-count">0</div>
-            </div>
-            <div class="usage-stat">
-                <div class="stat-label">AI Interactions</div>
-                <div class="stat-value" id="ai-interactions">0</div>
-            </div>
-            <div class="usage-stat">
-                <div class="stat-label">Most Used Calculator</div>
-                <div class="stat-value" id="most-used">Inbound</div>
-            </div>
-            <div class="usage-stat">
-                <div class="stat-label">Last Login</div>
-                <div class="stat-value" id="last-login">Now</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Supabase Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <script>
-        // Configuration
-        const supabaseUrl = 'https://guxoatwimcuexshreomo.supabase.co'
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1eG9hdHdpbWN1ZXhzaHJlb21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg0NTQ2MjcsImV4cCI6MjA2NDAzMDYyN30.jTFkHcCBSudUEeQg32OEPwirkf5r4sVXHKUXjZu5qYw'
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
-        const OPENAI_API_KEY = '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'
-
-        // Global variables
-        let currentUser = null;
-        let sessionStartTime = null;
-        let usageStats = {
-            totalSessions: 1,
-            calculationsCount: 0,
-            aiInteractions: 0,
-            tabUsage: {
-                'inbound': 0,
-                'zone-skipping': 0,
-                'pool-point': 0
-            },
-            currentTab: 'inbound'
-        };
-
-        // Field mappings for AI assistant
-        const fieldMappings = {
-            'inbound': {
-                'vendors': 'inbound-vendors',
-                'vendor count': 'inbound-vendors',
-                'suppliers': 'inbound-vendors',
-                'shipments': 'inbound-shipments',
-                'shipments per week': 'inbound-shipments',
-                'weekly shipments': 'inbound-shipments',
-                'ltl cost': 'inbound-cost-ltl',
-                'cost per ltl': 'inbound-cost-ltl',
-                'ltl shipment cost': 'inbound-cost-ltl',
-                'shipping cost': 'inbound-cost-ltl',
-                'pallets': 'inbound-pallets',
-                'pallets per shipment': 'inbound-pallets',
-                'accessorial': 'inbound-accessorial',
-                'accessorial charges': 'inbound-accessorial',
-                'accessorial fees': 'inbound-accessorial',
-                'appointment': 'inbound-appointment',
-                'appointment costs': 'inbound-appointment',
-                'utilization': 'inbound-utilization',
-                'trailer utilization': 'inbound-utilization',
-                'fill rate': 'inbound-utilization',
-                'dock doors': 'inbound-doors',
-                'doors': 'inbound-doors',
-                'labor': 'inbound-labor',
-                'labor cost': 'inbound-labor',
-                'damage rate': 'inbound-damage-rate',
-                'damage': 'inbound-damage-rate',
-                'detention': 'inbound-detention',
-                'detention hours': 'inbound-detention'
-            },
-            'zone-skipping': {
-                'volume': 'zone-volume',
-                'parcel volume': 'zone-volume',
-                'weekly volume': 'zone-volume',
-                'parcels': 'zone-volume',
-                'cost': 'zone-cost',
-                'cost per parcel': 'zone-cost',
-                'parcel cost': 'zone-cost',
-                'shipping cost': 'zone-cost',
-                'state': 'zone-state',
-                'shipping state': 'zone-state',
-                'transit time': 'zone-delivery-speed',
-                'delivery time': 'zone-delivery-speed',
-                'delivery speed': 'zone-delivery-speed',
-                'time in transit': 'zone-delivery-speed',
-                'touches': 'zone-touches',
-                'sort center touches': 'zone-touches',
-                'handling touches': 'zone-touches',
-                'damage rate': 'zone-damage-rate',
-                'damage': 'zone-damage-rate',
-                'abandonment': 'zone-abandonment',
-                'cart abandonment': 'zone-abandonment',
-                'abandonment rate': 'zone-abandonment',
-                'aov': 'zone-aov',
-                'average order value': 'zone-aov',
-                'order value': 'zone-aov',
-                'cltv': 'zone-cltv',
-                'customer lifetime value': 'zone-cltv',
-                'lifetime value': 'zone-cltv'
-            },
-            'pool-point': {
-                'shipments': 'pool-shipments',
-                'store shipments': 'pool-shipments',
-                'weekly shipments': 'pool-shipments',
-                'deliveries': 'pool-shipments',
-                'cost': 'pool-cost',
-                'delivery cost': 'pool-cost',
-                'cost per delivery': 'pool-cost',
-                'locations': 'pool-locations',
-                'store locations': 'pool-locations',
-                'stores': 'pool-locations',
-                'pallets': 'pool-pallets',
-                'pallets per shipment': 'pool-pallets',
-                'miles': 'pool-miles',
-                'miles per delivery': 'pool-miles',
-                'distance': 'pool-miles',
-                'frequency': 'pool-frequency',
-                'delivery frequency': 'pool-frequency',
-                'congestion': 'pool-congestion',
-                'wait time': 'pool-congestion',
-                'backroom wait': 'pool-congestion',
-                'on time': 'pool-ontime',
-                'on-time delivery': 'pool-ontime',
-                'delivery rate': 'pool-ontime',
-                'inventory cost': 'pool-inventory-cost',
-                'carrying cost': 'pool-inventory-cost',
-                'driver shortage': 'pool-driver-shortage',
-                'shortage impact': 'pool-driver-shortage',
-                'emissions': 'pool-emissions',
-                'co2 emissions': 'pool-emissions',
-                'carbon emissions': 'pool-emissions'
-            }
-        };
-
-       // Initialize session timer
+                    // Replace with your actual OpenAI API key before deploying to private repo
+                    const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY_HERE';
+            
+                    // Global variables
+                    let currentUser = null;
+                    let sessionStartTime = null;
+                    let usageStats = {
+                        totalSessions: 1,
+                        calculationsCount: 0,
+                        aiInteractions: 0,
+                        tabUsage: {
+                            'inbound': 0,
+                            'zone-skipping': 0,
+                            'pool-point': 0
+                        },
+                        currentTab: 'inbound'
+                    };
+            
+                    // Field mappings for AI assistant
+                    const fieldMappings = {
+                        'inbound': {
+                            'vendors': 'inbound-vendors',
+                            'vendor count': 'inbound-vendors',
+                            'suppliers': 'inbound-vendors',
+                            'shipments': 'inbound-shipments',
+                            'shipments per week': 'inbound-shipments',
+                            'weekly shipments': 'inbound-shipments',
+                            'ltl cost': 'inbound-cost-ltl',
+                            'cost per ltl': 'inbound-cost-ltl',
+                            'ltl shipment cost': 'inbound-cost-ltl',
+                            'shipping cost': 'inbound-cost-ltl',
+                            'pallets': 'inbound-pallets',
+                            'pallets per shipment': 'inbound-pallets',
+                            'accessorial': 'inbound-accessorial',
+                            'accessorial charges': 'inbound-accessorial',
+                            'accessorial fees': 'inbound-accessorial',
+                            'appointment': 'inbound-appointment',
+                            'appointment costs': 'inbound-appointment',
+                            'utilization': 'inbound-utilization',
+                            'trailer utilization': 'inbound-utilization',
+                            'fill rate': 'inbound-utilization',
+                            'dock doors': 'inbound-doors',
+                            'doors': 'inbound-doors',
+                            'labor': 'inbound-labor',
+                            'labor cost': 'inbound-labor',
+                            'damage rate': 'inbound-damage-rate',
+                            'damage': 'inbound-damage-rate',
+                            'detention': 'inbound-detention',
+                            'detention hours': 'inbound-detention'
+                        },
+                        'zone-skipping': {
+                            'volume': 'zone-volume',
+                            'parcel volume': 'zone-volume',
+                            'weekly volume': 'zone-volume',
+                            'parcels': 'zone-volume',
+                            'cost': 'zone-cost',
+                            'cost per parcel': 'zone-cost',
+                            'parcel cost': 'zone-cost',
+                            'shipping cost': 'zone-cost',
+                            'state': 'zone-state',
+                            'shipping state': 'zone-state',
+                            'transit time': 'zone-delivery-speed',
+                            'delivery time': 'zone-delivery-speed',
+                            'delivery speed': 'zone-delivery-speed',
+                            'time in transit': 'zone-delivery-speed',
+                            'touches': 'zone-touches',
+                            'sort center touches': 'zone-touches',
+                            'handling touches': 'zone-touches',
+                            'damage rate': 'zone-damage-rate',
+                            'damage': 'zone-damage-rate',
+                            'abandonment': 'zone-abandonment',
+                            'cart abandonment': 'zone-abandonment',
+                            'abandonment rate': 'zone-abandonment',
+                            'aov': 'zone-aov',
+                            'average order value': 'zone-aov',
+                            'order value': 'zone-aov',
+                            'cltv': 'zone-cltv',
+                            'customer lifetime value': 'zone-cltv',
+                            'lifetime value': 'zone-cltv'
+                        },
+                        'pool-point': {
+                            'shipments': 'pool-shipments',
+                            'store shipments': 'pool-shipments',
+                            'weekly shipments': 'pool-shipments',
+                            'deliveries': 'pool-shipments',
+                            'cost': 'pool-cost',
+                            'delivery cost': 'pool-cost',
+                            'cost per delivery': 'pool-cost',
+                            'locations': 'pool-locations',
+                            'store locations': 'pool-locations',
+                            'stores': 'pool-locations',
+                            'pallets': 'pool-pallets',
+                            'pallets per shipment': 'pool-pallets',
+                            'miles': 'pool-miles',
+                            'miles per delivery': 'pool-miles',
+                            'distance': 'pool-miles',
+                            'frequency': 'pool-frequency',
+                            'delivery frequency': 'pool-frequency',
+                            'congestion': 'pool-congestion',
+                            'wait time': 'pool-congestion',
+                            'backroom wait': 'pool-congestion',
+                            'on time': 'pool-ontime',
+                            'on-time delivery': 'pool-ontime',
+                            'delivery rate': 'pool-ontime',
+                            'inventory cost': 'pool-inventory-cost',
+                            'carrying cost': 'pool-inventory-cost',
+                            'driver shortage': 'pool-driver-shortage',
+                            'shortage impact': 'pool-driver-shortage',
+                            'emissions': 'pool-emissions',
+                            'co2 emissions': 'pool-emissions',
+                            'carbon emissions': 'pool-emissions'
+                        }
+                    };
+            
+                    // Initialize session timer
        function initializeSession() {
            sessionStartTime = Date.now();
            updateSessionTimer();
@@ -1762,25 +1777,25 @@
        }
 
        async function callOpenAI(userMessage) {
+           if (!OPENAI_API_KEY || OPENAI_API_KEY === 'YOUR_OPENAI_API_KEY_HERE') {
+               throw new Error('OpenAI API key not configured. Please set up your API key to use AI features.');
+           }
+           
            const currentTab = usageStats.currentTab;
            const systemPrompt = generateSystemPrompt(currentTab);
            
-           const response = await fetch('https://api.openai.com/v1/chat/completions', {
-               method: 'POST',
-               headers: {
-                   'Content-Type': 'application/json',
-                   'Authorization': `Bearer ${OPENAI_API_KEY}`
-               },
-               body: JSON.stringify({
-                   model: 'gpt-4',
-                   messages: [
-                       { role: 'system', content: systemPrompt },
-                       { role: 'user', content: userMessage }
-                   ],
-                   temperature: 0.7,
-                   max_tokens: 1000
-               })
-           });
+           const response = await fetch('/api/chat', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        message: userMessage
+    })
+});
+const data = await response.json();
+const reply = data.reply;
+
 
            if (!response.ok) {
                throw new Error(`OpenAI API error: ${response.status}`);
