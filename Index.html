@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WARP ROI Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Login Page Styles */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .login-box {
+            background: #111111;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #333333;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .login-logo {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #00ff88;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .login-subtitle {
+            color: #888888;
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #cccccc;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            background: #000000;
+            border: 2px solid #333333;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00ff88;
+        }
+
+        .login-btn, .signup-btn {
+            width: 100%;
+            padding: 15px;
+            background: #00ff88;
+            border: none;
+            border-radius: 8px;
+            color: #000000;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-bottom: 15px;
+        }
+
+        .signup-btn {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        .login-btn:hover {
+            background: #00cc6a;
+        }
+
+        .signup-btn:hover {
+            background: #555555;
+        }
+
+        .login-btn:disabled, .signup-btn:disabled {
+            background: #333333;
+            color: #888888;
+            cursor: not-allowed;
+        }
+
+        .demo-note {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #00ff88;
+            margin-top: 20px;
+        }
+
+        .demo-note p {
+            color: #cccccc;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .demo-note strong {
+            color: #00ff88;
+        }
+
+        .error-message, .success-message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .error-message {
+            background: #2a0a0a;
+            border: 1px solid #ff4444;
+            color: #ff6666;
+        }
+
+        .success-message {
+            background: #0a2a0a;
+            border: 1px solid #44ff44;
+            color: #66ff66;
+        }
+
+        /* Main App Styles */
+        .app-container {
+            display: none;
+            min-height: 100vh;
+            background: #0a0a0a;
+        }
+
+        .app-container.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #111111;
+            padding: 30px;
+            border-bottom: 1px solid #333333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .header-left p {
+            font-size: 1rem;
+            color: #888888;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info {
+            color: #888888;
+            font-size: 0.9rem;
+        }
+
+        .user-info .email {
+            color: #00ff88;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: #333333;
+            border: none;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #555555;
+        }
+
+        .tabs {
+            display: flex;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333333;
+            overflow-x: auto;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #888888;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            min-width: 200px;
+        }
+
+        .tab:hover {
+            color: #cccccc;
+            background: #222222;
+        }
+
+        .tab.active {
+            color: #ffffff;
+            border-bottom: 2px solid #00ff88;
+            background: #111111;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .calculator-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .calculator-header p {
+            font-size: 1.1rem;
+            color: #888888;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .info-box {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .info-icon {
+            background: #00ff88;
+            color: #000000;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-box .text {
+            color: #cccccc;
+            line-height: 1.5;
+        }
+
+        .learn-more {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .learn-more:hover {
+            text-decoration: underline;
+        }
+
+        .input-section {
+            background: #111111;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #333333;
+            margin-bottom: 30px;
+        }
+
+        .input-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-weight: 500;
+            color: #cccccc;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .input-group input, .input-group select {
+            padding: 12px 16px;
+            border: 2px solid #333333;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #ffffff;
+            background: #000000;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #00ff88;
+        }
+
+        .calculate-btn {
+            background: #00ff88;
+            color: #000000;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            width: 300px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .calculate-btn:hover {
+            background: #00cc6a;
+        }
+
+        .calculate-btn:disabled {
+            background: #333333;
+            color: #888888;
+            cursor: not-allowed;
+        }
+
+        .results-section {
+            display: none;
+            margin-top: 40px;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .results-header {
+            background: #000000;
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 16px 16px 0 0;
+            text-align: center;
+            border: 1px solid #333333;
+        }
+
+        .results-header h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .results-content {
+            background: #111111;
+            padding: 40px;
+            border-radius: 0 0 16px 16px;
+            border: 1px solid #333333;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .result-card {
+            background: #1a1a1a;
+            border: 2px solid #333333;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-2px);
+            border-color: #555555;
+        }
+
+        .result-card .label {
+            font-size: 0.9rem;
+            color: #888888;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .result-card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .result-card .value.cost {
+            color: #60a5fa;
+        }
+
+        .result-card .value.savings {
+            color: #00ff88;
+        }
+
+        .result-card .value.revenue {
+            color: #00ff88;
+        }
+
+        .result-card .improvement {
+            font-size: 0.8rem;
+            color: #00ff88;
+            font-weight: 500;
+        }
+
+        .roi-card {
+            background: #1a1a1a;
+            border: 2px solid #00ff88;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .roi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #00ff88;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .roi-card .label {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .roi-card .value {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        .benchmarks-section {
+            background: #111111;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333333;
+            margin-top: 30px;
+        }
+
+        .benchmarks-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .benchmark-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .benchmark-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #333333;
+        }
+
+        .benchmark-item .label {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        .benchmark-item .value {
+            color: #00ff88;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Usage Analytics */
+        .usage-overlay {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 350px;
+            height: 100vh;
+            background: #111111;
+            border-left: 1px solid #333333;
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .usage-overlay.active {
+            right: 0;
+        }
+
+        .usage-header {
+            padding: 30px 25px;
+            border-bottom: 1px solid #333333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+        }
+
+        .usage-header h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .close-usage {
+            background: none;
+            border: none;
+            color: #888888;
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 5px;
+        }
+
+        .close-usage:hover {
+            color: #cccccc;
+        }
+
+        .usage-content {
+            padding: 25px;
+        }
+
+        .usage-stat {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #333333;
+        }
+
+        .usage-stat .stat-label {
+            color: #888888;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .usage-stat .stat-value {
+            color: #00ff88;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1200px) {
+            .input-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .header-left h1 {
+                font-size: 1.5rem;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+            
+            .input-section {
+                padding: 25px;
+            }
+            
+            .input-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .benchmark-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .roi-card .value {
+                font-size: 3rem;
+            }
+
+            .login-box {
+                margin: 20px;
+                padding: 30px;
+            }
+            
+            .calculate-btn {
+                width: 100%;
+            }
+        }
+
+        /* Loading animation */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #333333;
+            border-radius: 50%;
+            border-top-color: #00ff88;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-box">
+            <div class="login-logo">WARP</div>
+            <div class="login-subtitle">ROI Calculator Access</div>
+            
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="success-message" class="success-message" style="display: none;"></div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required autocomplete="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </div>
+                
+                <button type="submit" id="login-btn" class="login-btn">
+                    Sign In
+                </button>
+                
+                <button type="button" id="signup-btn" class="signup-btn">
+                    Create Account
+                </button>
+            </form>
+            
+            <div class="demo-note">
+                <p><strong>Getting Started:</strong></p>
+                <p>1. <strong>Create Account:</strong> Click "Create Account" to register</p>
+                <p>2. <strong>Sign In:</strong> Use your email and password to access</p>
+                <p><em>Secure authentication powered by Supabase</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="app-container" class="app-container">
+        <div class="container">
+            <div class="header">
+                <div class="header-left">
+                    <h1>WARP ROI Calculator</h1>
+                    <p>Calculate return on investment for WARP logistics optimization solutions</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        Welcome, <span class="email" id="user-email">user@example.com</span>
+                    </div>
+                    <button id="usage-btn" class="logout-btn">Usage Stats</button>
+                    <button id="logout-btn" class="logout-btn">Sign Out</button>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('inbound')">Inbound Consolidation</button>
+                <button class="tab" onclick="showTab('zone-skipping')">Zone Skipping</button>
+                <button class="tab" onclick="showTab('pool-point')">Pool Distribution</button>
+            </div>
+
+            <!-- Inbound Vendor Consolidation -->
+            <div id="inbound" class="tab-content active">
+                <div class="calculator-header">
+                    <h2>ROI Calculator</h2>
+                    <p>Calculate your Return on Investment (ROI) with WARP's inbound consolidation solutions for optimized freight management.</p>
+                    
+                    <div class="info-box">
+                        <div class="info-icon">i</div>
+                        <div class="text">
+                            This calculator helps you understand the financial impact of implementing WARP's inbound consolidation solutions. It focuses on cost savings from improved trailer utilization, reduced accessorial fees, and operational efficiency improvements.
+                        </div>
+                        <a href="#" class="learn-more">Learn more</a>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>Input Your Data</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Vendors Shipping Inbound</label>
+                            <input type="number" id="inbound-vendors" value="50">
+                        </div>
+                        <div class="input-group">
+                            <label>Inbound Shipments per Week</label>
+                            <input type="number" id="inbound-shipments" value="100">
+                        </div>
+                        <div class="input-group">
+                            <label>Cost per LTL Shipment ($)</label>
+                            <input type="number" id="inbound-cost-ltl" value="250">
+                        </div>
+                        <div class="input-group">
+                            <label>Pallets per Shipment</label>
+                            <input type="number" id="inbound-pallets" value="4">
+                        </div>
+                        <div class="input-group">
+                            <label>Accessorial Charges per Week ($)</label>
+                            <input type="number" id="inbound-accessorial" value="1000">
+                        </div>
+                        <div class="input-group">
+                            <label>Appointment Costs per Week ($)</label>
+                            <input type="number" id="inbound-appointment" value="500">
+                        </div>
+                        <div class="input-group">
+                            <label>Trailer Utilization Rate (%)</label>
+                            <input type="number" id="inbound-utilization" value="40" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Dock Doors Available</label>
+                            <input type="number" id="inbound-doors" value="8">
+                        </div>
+                        <div class="input-group">
+                            <label>Labor Cost per Week ($)</label>
+                            <input type="number" id="inbound-labor" value="2000">
+                        </div>
+                        <div class="input-group">
+                            <label>Damage Rate (%)</label>
+                            <input type="number" id="inbound-damage-rate" value="2" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Detention Hours per Week</label>
+                            <input type="number" id="inbound-detention" value="10">
+                        </div>
+                    </div>
+                    
+                    <button class="calculate-btn" onclick="calculateInbound()">Calculate ROI</button>
+                </div>
+
+                <div class="benchmarks-section">
+                    <h4>WARP Optimization Benchmarks</h4>
+                    <div class="benchmark-grid">
+                        <div class="benchmark-item">
+                            <span class="label">Milkrun Cost per Vendor/Week</span>
+                            <span class="value">$100</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Trailer Fill Rate Improvement</span>
+                            <span class="value">85%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Accessorial Fee Elimination</span>
+                            <span class="value">90%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Congestion Reduction</span>
+                            <span class="value">50%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Damage Rate Reduction</span>
+                            <span class="value">50%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Labor Efficiency Gain</span>
+                            <span class="value">20%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="inbound-results" class="results-section">
+                    <div class="results-header">
+                        <h3>With WARP</h3>
+                    </div>
+                    <div class="results-content">
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="label">Projected Annual Cost</div>
+                                <div class="value cost" id="inbound-projected-cost">$260,000</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Annual Savings</div>
+                                <div class="value savings" id="inbound-total-savings">$1,582,100</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Current Annual Cost</div>
+                                <div class="value cost" id="inbound-current-cost">$1,300,000</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Monthly Savings</div>
+                                <div class="value savings" id="inbound-monthly-savings">$131,842</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Transportation Savings</div>
+                                <div class="value savings" id="inbound-transport-savings">$1,462,500</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Operational Efficiency Gains</div>
+                                <div class="value savings" id="inbound-operational-savings">$119,600</div>
+                            </div>
+                        </div>
+                        
+                        <div class="roi-card">
+                            <div class="label">Return on Investment (ROI)</div>
+                            <div class="value" id="inbound-roi">121.7%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zone Skipping -->
+            <div id="zone-skipping" class="tab-content">
+                <div class="calculator-header">
+                    <h2>ROI Calculator</h2>
+                    <p>Calculate your Return on Investment (ROI) with WARP's zone skipping solutions for retail and direct-to-consumer businesses.</p>
+                    
+                    <div class="info-box">
+                        <div class="info-icon">i</div>
+                        <div class="text">
+                            This calculator helps you understand the financial impact of implementing WARP's zone skipping solutions for your retail or DTC business. It focuses on cost savings from reduced shipping costs, damage reduction, and revenue improvements from faster delivery times and increased average order values.
+                        </div>
+                        <a href="#" class="learn-more">Learn more</a>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>Input Your Data</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Weekly Parcel Volume</label>
+                            <input type="number" id="zone-volume" value="10000">
+                        </div>
+                        <div class="input-group">
+                            <label>Average Cost per Parcel ($)</label>
+                            <input type="number" id="zone-cost" value="8.00" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label>Shipping State</label>
+                            <select id="zone-state">
+                                <option value="california">California</option>
+                                <option value="texas">Texas</option>
+                                <option value="florida">Florida</option>
+                                <option value="new-york">New York</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Time in Transit (days)</label>
+                            <input type="number" id="zone-delivery-speed" value="4.5" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Sort Center Touches</label>
+                            <input type="number" id="zone-touches" value="3">
+                        </div>
+                        <div class="input-group">
+                            <label>Current Damage Rate (%)</label>
+                            <input type="number" id="zone-damage-rate" value="2" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Cart Abandonment Rate (%)</label>
+                            <input type="number" id="zone-abandonment" value="70" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Average Order Value ($)</label>
+                            <input type="number" id="zone-aov" value="75" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label>Customer Lifetime Value ($)</label>
+                            <input type="number" id="zone-cltv" value="250" step="0.01">
+                        </div>
+                    </div>
+                    
+                    <button class="calculate-btn" onclick="calculateZoneSkipping()">Calculate ROI</button>
+                </div>
+
+                <div class="benchmarks-section">
+                    <h4>WARP Optimization Benchmarks</h4>
+                    <div class="benchmark-grid">
+                        <div class="benchmark-item">
+                            <span class="label">Zone Penalty Eliminated</span>
+                            <span class="value">$2.50</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Bulk Linehaul Savings</span>
+                            <span class="value">$1.50</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Sort Center Touches</span>
+                            <span class="value">2</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Speed Improvement</span>
+                            <span class="value">2.5 days</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Damage Reduction</span>
+                            <span class="value">50%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Conversion Improvement</span>
+                            <span class="value">10%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">AOV Improvement</span>
+                            <span class="value">5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="zone-results" class="results-section">
+                    <div class="results-header">
+                        <h3>With WARP</h3>
+                    </div>
+                    <div class="results-content">
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="label">Projected Weekly Shipping Cost</div>
+                                <div class="value cost" id="zone-projected-cost">$65,000</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Weekly Shipping Savings</div>
+                                <div class="value savings" id="zone-shipping-savings">$40,000</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Weekly Damage Cost</div>
+                                <div class="value cost" id="zone-damage-cost">$5,313</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Weekly Damage Savings</div>
+                                <div class="value savings" id="zone-damage-savings">$2,656</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Additional Revenue from Faster Delivery</div>
+                                <div class="value revenue" id="zone-conversion-revenue">$52,500</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Additional AOV Upsell Revenue</div>
+                                <div class="value revenue" id="zone-aov-revenue">$11,250</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Total Weekly Value Creation</div>
+                                <div class="value savings" id="zone-weekly-value">$107,500</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Total Annual Value Creation</div>
+                                <div class="value savings" id="zone-total-value">$5,590,000</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">WARP Time in Transit</div>
+                                <div class="value cost" id="zone-warp-transit">1.0 days</div>
+                                <div class="improvement">↑ 2.5 day faster</div>
+                            </div>
+                        </div>
+                        
+                        <div class="roi-card">
+                            <div class="label">Return on Investment (ROI)</div>
+                            <div class="value" id="zone-roi">102.4%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pool Point Distribution -->
+            <div id="pool-point" class="tab-content">
+                <div class="calculator-header">
+                    <h2>ROI Calculator</h2>
+                    <p>Calculate your Return on Investment (ROI) with WARP's pool point distribution solutions for optimized store delivery networks.</p>
+                    
+                    <div class="info-box">
+                        <div class="info-icon">i</div>
+                        <div class="text">
+                            This calculator helps you understand the financial impact of implementing WARP's pool distribution solutions. It focuses on cost savings from consolidated freight injection, route optimization, and operational efficiency improvements.
+                        </div>
+                        <a href="#" class="learn-more">Learn more</a>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>Input Your Data</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Weekly Store Shipments</label>
+                            <input type="number" id="pool-shipments" value="200">
+                        </div>
+                        <div class="input-group">
+                            <label>Cost per Store Delivery ($)</label>
+                            <input type="number" id="pool-cost" value="150" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label>Store Delivery Locations</label>
+                            <input type="number" id="pool-locations" value="50">
+                        </div>
+                        <div class="input-group">
+                            <label>Pallets per Store Shipment</label>
+                            <input type="number" id="pool-pallets" value="3">
+                        </div>
+                        <div class="input-group">
+                            <label>Miles per Store Delivery</label>
+                            <input type="number" id="pool-miles" value="60">
+                        </div>
+                        <div class="input-group">
+                            <label>Delivery Frequency per Week</label>
+                            <input type="number" id="pool-frequency" value="3" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Backroom Wait Time (hours)</label>
+                            <input type="number" id="pool-congestion" value="1.5" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>On-Time Delivery Rate (%)</label>
+                            <input type="number" id="pool-ontime" value="85" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Weekly Inventory Carrying Cost ($)</label>
+                            <input type="number" id="pool-inventory-cost" value="2000">
+                        </div>
+                        <div class="input-group">
+                            <label>Driver Shortage Impact (%)</label>
+                            <input type="number" id="pool-driver-shortage" value="10" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>CO2 Emissions per Mile (lbs)</label>
+                            <input type="number" id="pool-emissions" value="1.5" step="0.1">
+                        </div>
+                    </div>
+                    
+                    <button class="calculate-btn" onclick="calculatePoolPoint()">Calculate ROI</button>
+                </div>
+
+                <div class="benchmarks-section">
+                    <h4>WARP Optimization Benchmarks</h4>
+                    <div class="benchmark-grid">
+                        <div class="benchmark-item">
+                            <span class="label">Pool Point Injections</span>
+                            <span class="value">Regional</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Linehaul Distance Reduction</span>
+                            <span class="value">40%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Final-Mile Route Optimization</span>
+                            <span class="value">35%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Stop Density Improvement</span>
+                            <span class="value">25%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Delivery Frequency Control</span>
+                            <span class="value">2.5x</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Cost per Stop Reduction</span>
+                            <span class="value">30%</span>
+                        </div>
+                        <div class="benchmark-item">
+                            <span class="label">Inventory Holding Reduction</span>
+                            <span class="value">15%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pool-results" class="results-section">
+                    <div class="results-header">
+                        <h3>With WARP</h3>
+                    </div>
+                    <div class="results-content">
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="label">Projected Annual Cost</div>
+                                <div class="value cost" id="pool-projected-cost">$936,000</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Annual Savings</div>
+                                <div class="value savings" id="pool-total-savings">$732,680</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Current Annual Cost</div>
+                                <div class="value cost" id="pool-current-cost">$1,560,000</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Monthly Savings</div>
+                                <div class="value savings" id="pool-monthly-savings">$61,057</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Transportation Savings</div>
+                                <div class="value savings" id="pool-transport-savings">$624,000</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="label">Operational Improvements</div>
+                                <div class="value savings" id="pool-operational-savings">$108,680</div>
+                            </div>
+                        </div>
+                        
+                        <div class="roi-card">
+                            <div class="label">Return on Investment (ROI)</div>
+                            <div class="value" id="pool-roi">47.0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Usage Analytics Overlay -->
+    <div id="usage-overlay" class="usage-overlay">
+        <div class="usage-header">
+            <h3>Usage Analytics</h3>
+            <button id="close-usage" class="close-usage">&times;</button>
+        </div>
+        <div class="usage-content">
+            <div class="usage-stat">
+                <div class="stat-label">Total Sessions</div>
+                <div class="stat-value" id="total-sessions">1</div>
+            </div>
+            <div class="usage-stat">
+                <div class="stat-label">Current Session Time</div>
+                <div class="stat-value" id="session-time">00:00</div>
+            </div>
+            <div class="usage-stat">
+                <div class="stat-label">Calculations Run</div>
+                <div class="stat-value" id="calculations-count">0</div>
+            </div>
+            <div class="usage-stat">
+                <div class="stat-label">Most Used Calculator</div>
+                <div class="stat-value" id="most-used">Inbound</div>
+            </div>
+            <div class="usage-stat">
+                <div class="stat-label">Last Login</div>
+                <div class="stat-value" id="last-login">Now</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script>
+        // Supabase Configuration
+        const supabaseUrl = 'https://guxoatwimcuexshreomo.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1eG9hdHdpbWN1ZXhzaHJlb21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg0NTQ2MjcsImV4cCI6MjA2NDAzMDYyN30.jTFkHcCBSudUEeQg32OEPwirkf5r4sVXHKUXjZu5qYw'
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+
+        // Authentication and Session Management
+        let currentUser = null;
+        let sessionStartTime = null;
+        let usageStats = {
+            totalSessions: 1,
+            calculationsCount: 0,
+            tabUsage: {
+                'inbound': 0,
+                'zone-skipping': 0,
+                'pool-point': 0
+            },
+            currentTab: 'inbound'
+        };
+
+        // Initialize session timer
+        function initializeSession() {
+            sessionStartTime = Date.now();
+            updateSessionTimer();
+            setInterval(updateSessionTimer, 1000);
+        }
+
+        function updateSessionTimer() {
+            if (sessionStartTime) {
+                const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                document.getElementById('session-time').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }
+
+        // Auto-scroll function
+        function scrollToResults(resultsId) {
+            setTimeout(() => {
+                const resultsSection = document.getElementById(resultsId);
+                if (resultsSection) {
+                    resultsSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            }, 100);
+        }
+
+        // Login functionality
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('login-btn');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            
+            // Show loading state
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="spinner"></span> Signing in...';
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            try {
+                // Supabase Authentication
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password,
+                });
+
+                if (error) {
+                    throw error;
+                }
+
+                if (data.user) {
+                    // Set user session
+                    currentUser = {
+                        id: data.user.id,
+                        email: data.user.email,
+                        loginTime: new Date().toISOString(),
+                        sessionId: data.session?.access_token || generateSessionId()
+                    };
+                    
+                    // Track login event
+                    await trackEvent('login', {
+                        user_id: currentUser.id,
+                        email: currentUser.email,
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                    // Show app, hide login
+                    document.getElementById('login-page').style.display = 'none';
+                    document.getElementById('app-container').classList.add('active');
+                    document.getElementById('user-email').textContent = email;
+                    
+                    // Initialize session
+                    initializeSession();
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                let errorMsg = 'Invalid email or password. Please try again.';
+                
+                // Handle specific Supabase error messages
+                if (error.message.includes('Invalid login credentials')) {
+                    errorMsg = 'Invalid email or password. Please check your credentials.';
+                } else if (error.message.includes('Email not confirmed')) {
+                    errorMsg = 'Please check your email and confirm your account.';
+                } else if (error.message.includes('Too many requests')) {
+                    errorMsg = 'Too many login attempts. Please try again later.';
+                }
+                
+                errorMessage.textContent = errorMsg;
+                errorMessage.style.display = 'block';
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In';
+            }
+        });
+
+        // Sign Up functionality
+        document.getElementById('signup-btn').addEventListener('click', async function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const signupBtn = document.getElementById('signup-btn');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            
+            if (!email || !password) {
+                errorMessage.textContent = 'Please enter both email and password';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                return;
+            }
+
+            if (password.length < 6) {
+                errorMessage.textContent = 'Password must be at least 6 characters long';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                return;
+            }
+            
+            // Show loading state
+            signupBtn.disabled = true;
+            signupBtn.innerHTML = '<span class="spinner"></span> Creating Account...';
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                });
+                
+                if (error) {
+                    throw error;
+                }
+                
+                if (data.user) {
+                    successMessage.textContent = 'Account created successfully! You can now sign in.';
+                    successMessage.style.display = 'block';
+                    // Clear form
+                    document.getElementById('email').value = '';
+                    document.getElementById('password').value = '';
+                }
+                
+            } catch (error) {
+                console.error('Sign up error:', error);
+                let errorMsg = 'Failed to create account. Please try again.';
+                
+                if (error.message.includes('already registered')) {
+                    errorMsg = 'This email is already registered. Please sign in instead.';
+                } else if (error.message.includes('Password should be')) {
+                    errorMsg = 'Password should be at least 6 characters long.';
+                }
+                
+                errorMessage.textContent = errorMsg;
+                errorMessage.style.display = 'block';
+            } finally {
+                signupBtn.disabled = false;
+                signupBtn.textContent = 'Create Account';
+            }
+        });
+
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', async function() {
+            if (currentUser) {
+                // Track logout event
+                await trackEvent('logout', {
+                    user_id: currentUser.id,
+                    email: currentUser.email,
+                    sessionDuration: Date.now() - sessionStartTime,
+                    timestamp: new Date().toISOString()
+                });
+
+                // Supabase Sign Out
+                await supabase.auth.signOut();
+            }
+            
+            // Clear session
+            currentUser = null;
+            sessionStartTime = null;
+            
+            // Show login, hide app
+            document.getElementById('app-container').classList.remove('active');
+            document.getElementById('login-page').style.display = 'flex';
+            
+            // Reset form
+            document.getElementById('login-form').reset();
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('success-message').style.display = 'none';
+        });
+
+        // Usage analytics overlay
+        document.getElementById('usage-btn').addEventListener('click', function() {
+            document.getElementById('usage-overlay').classList.add('active');
+            updateUsageStats();
+        });
+
+        document.getElementById('close-usage').addEventListener('click', function() {
+            document.getElementById('usage-overlay').classList.remove('active');
+        });
+
+        function updateUsageStats() {
+            document.getElementById('total-sessions').textContent = usageStats.totalSessions;
+            document.getElementById('calculations-count').textContent = usageStats.calculationsCount;
+            
+            // Find most used calculator
+            const mostUsed = Object.keys(usageStats.tabUsage).reduce((a, b) => 
+                usageStats.tabUsage[a] > usageStats.tabUsage[b] ? a : b
+            );
+            const tabNames = {
+                'inbound': 'Inbound',
+                'zone-skipping': 'Zone Skipping',
+                'pool-point': 'Pool Distribution'
+            };
+            document.getElementById('most-used').textContent = tabNames[mostUsed];
+            
+            if (currentUser) {
+                document.getElementById('last-login').textContent = 
+                    new Date(currentUser.loginTime).toLocaleTimeString();
+            }
+        }
+
+        // Event tracking function (Supabase integration)
+        async function trackEvent(eventType, data) {
+            try {
+                // Insert into Supabase analytics table
+                const { error } = await supabase
+                    .from('usage_analytics')
+                    .insert([
+                        {
+                            user_id: currentUser?.id,
+                            event_type: eventType,
+                            event_data: data,
+                            timestamp: new Date().toISOString()
+                        }
+                    ]);
+
+                if (error) {
+                    console.error('Analytics tracking error:', error);
+                } else {
+                    console.log('Event tracked:', eventType, data);
+                }
+            } catch (error) {
+                console.error('Failed to track event:', error);
+            }
+        }
+
+        function generateSessionId() {
+            return Math.random().toString(36).substring(2, 15) + 
+                   Math.random().toString(36).substring(2, 15);
+        }
+
+        // Tab management with usage tracking
+        function showTab(tabName) {
+            // Track tab usage
+            usageStats.tabUsage[tabName]++;
+            usageStats.currentTab = tabName;
+            
+            // Track tab switch event
+            if (currentUser) {
+                trackEvent('tab_switch', {
+                    user_id: currentUser.id,
+                    tab: tabName,
+                    timestamp: new Date().toISOString()
+                });
+            }
+            
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Utility functions
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(Math.round(value));
+        }
+
+        function formatPercentage(value) {
+            return (value * 100).toFixed(1) + '%';
+        }
+
+        // Calculator functions with usage tracking and auto-scroll
+        function calculateInbound() {
+            usageStats.calculationsCount++;
+            trackCalculationEvent('inbound');
+            
+            // Get input values
+            const vendors = parseFloat(document.getElementById('inbound-vendors').value) || 0;
+            const shipments = parseFloat(document.getElementById('inbound-shipments').value) || 0;
+            const costLTL = parseFloat(document.getElementById('inbound-cost-ltl').value) || 0;
+            const pallets = parseFloat(document.getElementById('inbound-pallets').value) || 0;
+            const accessorial = parseFloat(document.getElementById('inbound-accessorial').value) || 0;
+            const appointment = parseFloat(document.getElementById('inbound-appointment').value) || 0;
+            const utilization = parseFloat(document.getElementById('inbound-utilization').value) / 100 || 0;
+            const doors = parseFloat(document.getElementById('inbound-doors').value) || 0;
+            const labor = parseFloat(document.getElementById('inbound-labor').value) || 0;
+            const damageRate = parseFloat(document.getElementById('inbound-damage-rate').value) / 100 || 0;
+            const detention = parseFloat(document.getElementById('inbound-detention').value) || 0;
+
+            // WARP benchmarks (fixed)
+            const milkrunCost = 100;
+            const trailerFillRate = 0.85;
+            const accessorialElimination = 0.9;
+            const congestionReduction = 0.5;
+            const damageReduction = 0.5;
+            const laborEfficiency = 0.2;
+
+            // Calculations
+            const currentAnnualCost = shipments * costLTL * 52;
+            const projectedAnnualCost = vendors * milkrunCost * 52;
+            const trailerUtilizationSavings = (trailerFillRate / utilization) - 1;
+            const transportationSavings = currentAnnualCost * trailerUtilizationSavings;
+            
+            const accessorialAnnualCost = accessorial * 52;
+            const accessorialSavings = accessorialAnnualCost * accessorialElimination;
+            
+            const appointmentAnnualCost = (appointment + (detention * 100)) * 52;
+            const appointmentSavings = appointmentAnnualCost * congestionReduction;
+            
+            const laborAnnualCost = labor * 52;
+            const laborSavings = laborAnnualCost * laborEfficiency;
+            
+            const damageAnnualCost = shipments * costLTL * damageRate * 52;
+            const damageSavings = damageAnnualCost * damageReduction;
+
+            const totalAnnualSavings = transportationSavings + accessorialSavings + appointmentSavings + laborSavings + damageSavings;
+            const monthlySavings = totalAnnualSavings / 12;
+            const roi = totalAnnualSavings / currentAnnualCost;
+            const operationalSavings = accessorialSavings + appointmentSavings + laborSavings + damageSavings;
+
+            // Update display
+            document.getElementById('inbound-roi').textContent = formatPercentage(roi);
+            document.getElementById('inbound-total-savings').textContent = formatCurrency(totalAnnualSavings);
+            document.getElementById('inbound-monthly-savings').textContent = formatCurrency(monthlySavings);
+            document.getElementById('inbound-transport-savings').textContent = formatCurrency(transportationSavings);
+            document.getElementById('inbound-current-cost').textContent = formatCurrency(currentAnnualCost);
+            document.getElementById('inbound-projected-cost').textContent = formatCurrency(projectedAnnualCost);
+            document.getElementById('inbound-operational-savings').textContent = formatCurrency(operationalSavings);
+            
+            // Show results and scroll to them
+            document.getElementById('inbound-results').classList.add('active');
+            scrollToResults('inbound-results');
+        }
+
+        function calculateZoneSkipping() {
+            usageStats.calculationsCount++;
+            trackCalculationEvent('zone-skipping');
+            
+            // Get input values
+            const volume = parseFloat(document.getElementById('zone-volume').value) || 0;
+            const cost = parseFloat(document.getElementById('zone-cost').value) || 0;
+            const deliverySpeed = parseFloat(document.getElementById('zone-delivery-speed').value) || 0;
+            const touches = parseFloat(document.getElementById('zone-touches').value) || 0;
+            const damageRate = parseFloat(document.getElementById('zone-damage-rate').value) / 100 || 0;
+            const abandonment = parseFloat(document.getElementById('zone-abandonment').value) / 100 || 0;
+            const aov = parseFloat(document.getElementById('zone-aov').value) || 0;
+            const cltv = parseFloat(document.getElementById('zone-cltv').value) || 0;
+
+            // WARP benchmarks (fixed)
+            const zonePenalty = 2.50;
+            const bulkSavings = 1.50;
+            const reducedTouches = 2;
+            const speedImprovement = 2.5;
+            const damageReduction = 0.5;
+            const conversionImprovement = 0.1;
+            const aovImprovement = 0.05;
+
+            // Calculations
+            const currentWeeklyCost = volume * (cost + zonePenalty);
+            const projectedWeeklyCost = volume * (cost - bulkSavings);
+            const weeklyShippingSavings = currentWeeklyCost - projectedWeeklyCost;
+            
+            const weeklyDamageCost = volume * damageRate * aov * 0.5;
+            const weeklyDamageSavings = weeklyDamageCost * damageReduction;
+            
+            const additionalRevenueFromFasterDelivery = volume * abandonment * aov * conversionImprovement;
+            const additionalAOVRevenue = volume * (1 - abandonment) * aov * aovImprovement;
+            
+            const totalWeeklyValue = weeklyShippingSavings + weeklyDamageSavings + additionalRevenueFromFasterDelivery + additionalAOVRevenue;
+            const totalAnnualValue = totalWeeklyValue * 52;
+            const roi = totalAnnualValue / (currentWeeklyCost * 52);
+            
+            const warpTransitTime = Math.max(1.0, deliverySpeed - speedImprovement);
+
+            // Update display
+            document.getElementById('zone-roi').textContent = formatPercentage(roi);
+            document.getElementById('zone-total-value').textContent = formatCurrency(totalAnnualValue);
+            document.getElementById('zone-shipping-savings').textContent = formatCurrency(weeklyShippingSavings);
+            document.getElementById('zone-projected-cost').textContent = formatCurrency(projectedWeeklyCost);
+            document.getElementById('zone-damage-cost').textContent = formatCurrency(weeklyDamageCost);
+            document.getElementById('zone-damage-savings').textContent = formatCurrency(weeklyDamageSavings);
+            document.getElementById('zone-conversion-revenue').textContent = formatCurrency(additionalRevenueFromFasterDelivery);
+            document.getElementById('zone-aov-revenue').textContent = formatCurrency(additionalAOVRevenue);
+            document.getElementById('zone-weekly-value').textContent = formatCurrency(totalWeeklyValue);
+            document.getElementById('zone-warp-transit').textContent = warpTransitTime.toFixed(1) + ' days';
+            
+            // Show results and scroll to them
+            document.getElementById('zone-results').classList.add('active');
+            scrollToResults('zone-results');
+        }
+
+        function calculatePoolPoint() {
+            usageStats.calculationsCount++;
+            trackCalculationEvent('pool-point');
+            
+            // Get input values
+            const shipments = parseFloat(document.getElementById('pool-shipments').value) || 0;
+            const cost = parseFloat(document.getElementById('pool-cost').value) || 0;
+            const locations = parseFloat(document.getElementById('pool-locations').value) || 0;
+            const pallets = parseFloat(document.getElementById('pool-pallets').value) || 0;
+            const miles = parseFloat(document.getElementById('pool-miles').value) || 0;
+            const frequency = parseFloat(document.getElementById('pool-frequency').value) || 0;
+            const congestion = parseFloat(document.getElementById('pool-congestion').value) || 0;
+            const onTime = parseFloat(document.getElementById('pool-ontime').value) / 100 || 0;
+            const inventoryCost = parseFloat(document.getElementById('pool-inventory-cost').value) || 0;
+            const driverShortage = parseFloat(document.getElementById('pool-driver-shortage').value) / 100 || 0;
+            const emissions = parseFloat(document.getElementById('pool-emissions').value) || 0;
+
+            // WARP benchmarks (fixed)
+            const costReduction = 0.4;
+            const routeOptimization = 0.35;
+            const densityImprovement = 0.25;
+            const frequencyImprovement = 2.5;
+            const deliveryStopReduction = 0.3;
+            const inventoryReduction = 0.15;
+
+            // Calculations
+            const currentAnnualCost = shipments * cost * 52;
+            const projectedAnnualCost = shipments * cost * (1 - costReduction) * 52;
+            const transportationSavings = currentAnnualCost - projectedAnnualCost;
+            
+            const inventoryHoldingReduction = inventoryCost * inventoryReduction * 52;
+            const laborSavings = frequency * 100 * 0.3 * 52; // Simplified labor calculation
+            const carbonReduction = shipments * pallets * miles * emissions * 0.4 * 52;
+
+            const totalAnnualSavings = transportationSavings + inventoryHoldingReduction + laborSavings;
+            const monthlySavings = totalAnnualSavings / 12;
+            const roi = totalAnnualSavings / currentAnnualCost;
+            const operationalSavings = inventoryHoldingReduction + laborSavings;
+
+            // Update display
+            document.getElementById('pool-roi').textContent = formatPercentage(roi);
+            document.getElementById('pool-total-savings').textContent = formatCurrency(totalAnnualSavings);
+            document.getElementById('pool-monthly-savings').textContent = formatCurrency(monthlySavings);
+            document.getElementById('pool-transport-savings').textContent = formatCurrency(transportationSavings);
+            document.getElementById('pool-current-cost').textContent = formatCurrency(currentAnnualCost);
+            document.getElementById('pool-projected-cost').textContent = formatCurrency(projectedAnnualCost);
+            document.getElementById('pool-operational-savings').textContent = formatCurrency(operationalSavings);
+            
+            // Show results and scroll to them
+            document.getElementById('pool-results').classList.add('active');
+            scrollToResults('pool-results');
+        }
+
+        function trackCalculationEvent(calculator) {
+            if (currentUser) {
+                trackEvent('calculation', {
+                    user_id: currentUser.id,
+                    calculator: calculator,
+                    timestamp: new Date().toISOString()
+                });
+            }
+        }
+
+        // Close usage overlay when clicking outside
+        document.addEventListener('click', function(e) {
+            const overlay = document.getElementById('usage-overlay');
+            const usageBtn = document.getElementById('usage-btn');
+            
+            if (overlay.classList.contains('active') && 
+                !overlay.contains(e.target) && 
+                !usageBtn.contains(e.target)) {
+                overlay.classList.remove('active');
+            }
+        });
+
+        // Check for existing session on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            const { data: { session } } = await supabase.auth.getSession();
+            
+            if (session && session.user) {
+                // User is already logged in
+                currentUser = {
+                    id: session.user.id,
+                    email: session.user.email,
+                    loginTime: new Date().toISOString(),
+                    sessionId: session.access_token
+                };
+                
+                // Show app, hide login
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('app-container').classList.add('active');
+                document.getElementById('user-email').textContent = session.user.email;
+                
+                // Initialize session
+                initializeSession();
+                
+                // Track session resume
+                await trackEvent('session_resume', {
+                    user_id: currentUser.id,
+                    email: currentUser.email,
+                    timestamp: new Date().toISOString()
+                });
+            }
+        });
+
+        // Listen for auth state changes
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log('Auth state changed:', event, session);
+            
+            if (event === 'SIGNED_OUT') {
+                // Handle sign out
+                currentUser = null;
+                sessionStartTime = null;
+                document.getElementById('app-container').classList.remove('active');
+                document.getElementById('login-page').style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
