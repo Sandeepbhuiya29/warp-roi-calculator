@@ -12,8 +12,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 
-Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #0a0a0a;
             color: #ffffff;
             line-height: 1.6;
@@ -709,22 +708,18 @@ Roboto, 'Helvetica Neue', Arial, sans-serif;
             <div class="login-logo">WARP</div>
             <div class="login-subtitle">ROI Calculator Access</div>
             
-            <div id="error-message" class="error-message" style="display: 
-none;"></div>
-            <div id="success-message" class="success-message" 
-style="display: none;"></div>
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="success-message" class="success-message" style="display: none;"></div>
             
             <form id="login-form">
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" required 
-autocomplete="email">
+                    <input type="email" id="email" required autocomplete="email">
                 </div>
                 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" required 
-autocomplete="current-password">
+                    <input type="password" id="password" required autocomplete="current-password">
                 </div>
                 
                 <button type="submit" id="login-btn" class="login-btn">
@@ -738,10 +733,8 @@ autocomplete="current-password">
             
             <div class="demo-note">
                 <p><strong>Getting Started:</strong></p>
-                <p>1. <strong>Create Account:</strong> Click "Create 
-Account" to register</p>
-                <p>2. <strong>Sign In:</strong> Use your email and 
-password to access</p>
+                <p>1. <strong>Create Account:</strong> Click "Create Account" to register</p>
+                <p>2. <strong>Sign In:</strong> Use your email and password to access</p>
                 <p><em>Secure authentication powered by Supabase</em></p>
             </div>
         </div>
@@ -753,45 +746,33 @@ password to access</p>
             <div class="header">
                 <div class="header-left">
                     <h1>WARP ROI Calculator</h1>
-                    <p>Calculate return on investment for WARP logistics 
-optimization solutions</p>
+                    <p>Calculate return on investment for WARP logistics optimization solutions</p>
                 </div>
                 <div class="header-right">
                     <div class="user-info">
-                        Welcome, <span class="email" 
-id="user-email">user@example.com</span>
+                        Welcome, <span class="email" id="user-email">user@example.com</span>
                     </div>
-                    <button id="usage-btn" class="logout-btn">Usage 
-Stats</button>
-                    <button id="logout-btn" class="logout-btn">Sign 
-Out</button>
+                    <button id="usage-btn" class="logout-btn">Usage Stats</button>
+                    <button id="logout-btn" class="logout-btn">Sign Out</button>
                 </div>
             </div>
 
             <div class="tabs">
-                <button class="tab active" 
-onclick="showTab('inbound')">Inbound Consolidation</button>
-                <button class="tab" 
-onclick="showTab('zone-skipping')">Zone Skipping</button>
-                <button class="tab" onclick="showTab('pool-point')">Pool 
-Distribution</button>
+                <button class="tab active" onclick="showTab('inbound')">Inbound Consolidation</button>
+                <button class="tab" onclick="showTab('zone-skipping')">Zone Skipping</button>
+                <button class="tab" onclick="showTab('pool-point')">Pool Distribution</button>
             </div>
 
             <!-- Inbound Vendor Consolidation -->
             <div id="inbound" class="tab-content active">
                 <div class="calculator-header">
                     <h2>ROI Calculator</h2>
-                    <p>Calculate your Return on Investment (ROI) with 
-WARP's inbound consolidation solutions for optimized freight 
-management.</p>
+                    <p>Calculate your Return on Investment (ROI) with WARP's inbound consolidation solutions for optimized freight management.</p>
                     
                     <div class="info-box">
                         <div class="info-icon">i</div>
                         <div class="text">
-                            This calculator helps you understand the 
-financial impact of implementing WARP's inbound consolidation solutions. 
-It focuses on cost savings from improved trailer utilization, reduced 
-accessorial fees, and operational efficiency improvements.
+                            This calculator helps you understand the financial impact of implementing WARP's inbound consolidation solutions. It focuses on cost savings from improved trailer utilization, reduced accessorial fees, and operational efficiency improvements.
                         </div>
                         <a href="#" class="learn-more">Learn more</a>
                     </div>
@@ -802,97 +783,78 @@ accessorial fees, and operational efficiency improvements.
                     <div class="input-grid">
                         <div class="input-group">
                             <label>Vendors Shipping Inbound</label>
-                            <input type="number" id="inbound-vendors" 
-value="50">
+                            <input type="number" id="inbound-vendors" value="50">
                         </div>
                         <div class="input-group">
                             <label>Inbound Shipments per Week</label>
-                            <input type="number" id="inbound-shipments" 
-value="100">
+                            <input type="number" id="inbound-shipments" value="100">
                         </div>
                         <div class="input-group">
                             <label>Cost per LTL Shipment ($)</label>
-                            <input type="number" id="inbound-cost-ltl" 
-value="250">
+                            <input type="number" id="inbound-cost-ltl" value="250">
                         </div>
                         <div class="input-group">
                             <label>Pallets per Shipment</label>
-                            <input type="number" id="inbound-pallets" 
-value="4">
+                            <input type="number" id="inbound-pallets" value="4">
                         </div>
                         <div class="input-group">
-                            <label>Accessorial Charges per Week 
-($)</label>
-                            <input type="number" id="inbound-accessorial" 
-value="1000">
+                            <label>Accessorial Charges per Week ($)</label>
+                            <input type="number" id="inbound-accessorial" value="1000">
                         </div>
                         <div class="input-group">
                             <label>Appointment Costs per Week ($)</label>
-                            <input type="number" id="inbound-appointment" 
-value="500">
+                            <input type="number" id="inbound-appointment" value="500">
                         </div>
                         <div class="input-group">
                             <label>Trailer Utilization Rate (%)</label>
-                            <input type="number" id="inbound-utilization" 
-value="40" step="0.1">
+                            <input type="number" id="inbound-utilization" value="40" step="0.1">
                         </div>
                         <div class="input-group">
                             <label>Dock Doors Available</label>
-                            <input type="number" id="inbound-doors" 
-value="8">
+                            <input type="number" id="inbound-doors" value="8">
                         </div>
                         <div class="input-group">
                             <label>Labor Cost per Week ($)</label>
-                            <input type="number" id="inbound-labor" 
-value="2000">
+                            <input type="number" id="inbound-labor" value="2000">
                         </div>
                         <div class="input-group">
                             <label>Damage Rate (%)</label>
-                            <input type="number" id="inbound-damage-rate" 
-value="2" step="0.1">
+                            <input type="number" id="inbound-damage-rate" value="2" step="0.1">
                         </div>
                         <div class="input-group">
                             <label>Detention Hours per Week</label>
-                            <input type="number" id="inbound-detention" 
-value="10">
+                            <input type="number" id="inbound-detention" value="10">
                         </div>
                     </div>
                     
-                    <button class="calculate-btn" 
-onclick="calculateInbound()">Calculate ROI</button>
+                    <button class="calculate-btn" onclick="calculateInbound()">Calculate ROI</button>
                 </div>
 
                 <div class="benchmarks-section">
                     <h4>WARP Optimization Benchmarks</h4>
                     <div class="benchmark-grid">
                         <div class="benchmark-item">
-                            <span class="label">Milkrun Cost per 
-Vendor/Week</span>
+                            <span class="label">Milkrun Cost per Vendor/Week</span>
                             <span class="value">$100</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Trailer Fill Rate 
-Improvement</span>
+                            <span class="label">Trailer Fill Rate Improvement</span>
                             <span class="value">85%</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Accessorial Fee 
-Elimination</span>
+                            <span class="label">Accessorial Fee Elimination</span>
                             <span class="value">90%</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Congestion 
-Reduction</span>
+                            <span class="label">Congestion Reduction</span>
                             <span class="value">50%</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Damage Rate 
-Reduction</span>
+                            <span class="label">Damage Rate Reduction</span>
                             <span class="value">50%</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Labor Efficiency 
-Gain</span>
+                            <span class="label">Labor Efficiency Gain</span>
                             <span class="value">20%</span>
                         </div>
                     </div>
@@ -905,46 +867,34 @@ Gain</span>
                     <div class="results-content">
                         <div class="results-grid">
                             <div class="result-card">
-                                <div class="label">Projected Annual 
-Cost</div>
-                                <div class="value cost" 
-id="inbound-projected-cost">$260,000</div>
+                                <div class="label">Projected Annual Cost</div>
+                                <div class="value cost" id="inbound-projected-cost">$260,000</div>
                             </div>
                             <div class="result-card">
                                 <div class="label">Annual Savings</div>
-                                <div class="value savings" 
-id="inbound-total-savings">$1,582,100</div>
+                                <div class="value savings" id="inbound-total-savings">$1,582,100</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Current Annual 
-Cost</div>
-                                <div class="value cost" 
-id="inbound-current-cost">$1,300,000</div>
+                                <div class="label">Current Annual Cost</div>
+                                <div class="value cost" id="inbound-current-cost">$1,300,000</div>
                             </div>
                             <div class="result-card">
                                 <div class="label">Monthly Savings</div>
-                                <div class="value savings" 
-id="inbound-monthly-savings">$131,842</div>
+                                <div class="value savings" id="inbound-monthly-savings">$131,842</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Transportation 
-Savings</div>
-                                <div class="value savings" 
-id="inbound-transport-savings">$1,462,500</div>
+                                <div class="label">Transportation Savings</div>
+                                <div class="value savings" id="inbound-transport-savings">$1,462,500</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Operational Efficiency 
-Gains</div>
-                                <div class="value savings" 
-id="inbound-operational-savings">$119,600</div>
+                                <div class="label">Operational Efficiency Gains</div>
+                                <div class="value savings" id="inbound-operational-savings">$119,600</div>
                             </div>
                         </div>
                         
                         <div class="roi-card">
-                            <div class="label">Return on Investment 
-(ROI)</div>
-                            <div class="value" 
-id="inbound-roi">121.7%</div>
+                            <div class="label">Return on Investment (ROI)</div>
+                            <div class="value" id="inbound-roi">121.7%</div>
                         </div>
                     </div>
                 </div>
@@ -954,18 +904,12 @@ id="inbound-roi">121.7%</div>
             <div id="zone-skipping" class="tab-content">
                 <div class="calculator-header">
                     <h2>ROI Calculator</h2>
-                    <p>Calculate your Return on Investment (ROI) with 
-WARP's zone skipping solutions for retail and direct-to-consumer 
-businesses.</p>
+                    <p>Calculate your Return on Investment (ROI) with WARP's zone skipping solutions for retail and direct-to-consumer businesses.</p>
                     
                     <div class="info-box">
                         <div class="info-icon">i</div>
                         <div class="text">
-                            This calculator helps you understand the 
-financial impact of implementing WARP's zone skipping solutions for your 
-retail or DTC business. It focuses on cost savings from reduced shipping 
-costs, damage reduction, and revenue improvements from faster delivery 
-times and increased average order values.
+                            This calculator helps you understand the financial impact of implementing WARP's zone skipping solutions for your retail or DTC business. It focuses on cost savings from reduced shipping costs, damage reduction, and revenue improvements from faster delivery times and increased average order values.
                         </div>
                         <a href="#" class="learn-more">Learn more</a>
                     </div>
@@ -976,19 +920,16 @@ times and increased average order values.
                     <div class="input-grid">
                         <div class="input-group">
                             <label>Weekly Parcel Volume</label>
-                            <input type="number" id="zone-volume" 
-value="10000">
+                            <input type="number" id="zone-volume" value="10000">
                         </div>
                         <div class="input-group">
                             <label>Average Cost per Parcel ($)</label>
-                            <input type="number" id="zone-cost" 
-value="8.00" step="0.01">
+                            <input type="number" id="zone-cost" value="8.00" step="0.01">
                         </div>
                         <div class="input-group">
                             <label>Shipping State</label>
                             <select id="zone-state">
-                                <option 
-value="california">California</option>
+                                <option value="california">California</option>
                                 <option value="texas">Texas</option>
                                 <option value="florida">Florida</option>
                                 <option value="new-york">New York</option>
@@ -997,51 +938,42 @@ value="california">California</option>
                         </div>
                         <div class="input-group">
                             <label>Time in Transit (days)</label>
-                            <input type="number" id="zone-delivery-speed" 
-value="4.5" step="0.1">
+                            <input type="number" id="zone-delivery-speed" value="4.5" step="0.1">
                         </div>
                         <div class="input-group">
                             <label>Sort Center Touches</label>
-                            <input type="number" id="zone-touches" 
-value="3">
+                            <input type="number" id="zone-touches" value="3">
                         </div>
                         <div class="input-group">
                             <label>Current Damage Rate (%)</label>
-                            <input type="number" id="zone-damage-rate" 
-value="2" step="0.1">
+                            <input type="number" id="zone-damage-rate" value="2" step="0.1">
                         </div>
                         <div class="input-group">
                             <label>Cart Abandonment Rate (%)</label>
-                            <input type="number" id="zone-abandonment" 
-value="70" step="0.1">
+                            <input type="number" id="zone-abandonment" value="70" step="0.1">
                         </div>
                         <div class="input-group">
                             <label>Average Order Value ($)</label>
-                            <input type="number" id="zone-aov" value="75" 
-step="0.01">
+                            <input type="number" id="zone-aov" value="75" step="0.01">
                         </div>
                         <div class="input-group">
                             <label>Customer Lifetime Value ($)</label>
-                            <input type="number" id="zone-cltv" 
-value="250" step="0.01">
+                            <input type="number" id="zone-cltv" value="250" step="0.01">
                         </div>
                     </div>
                     
-                    <button class="calculate-btn" 
-onclick="calculateZoneSkipping()">Calculate ROI</button>
+                    <button class="calculate-btn" onclick="calculateZoneSkipping()">Calculate ROI</button>
                 </div>
 
                 <div class="benchmarks-section">
                     <h4>WARP Optimization Benchmarks</h4>
                     <div class="benchmark-grid">
                         <div class="benchmark-item">
-                            <span class="label">Zone Penalty 
-Eliminated</span>
+                            <span class="label">Zone Penalty Eliminated</span>
                             <span class="value">$2.50</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Bulk Linehaul 
-Savings</span>
+                            <span class="label">Bulk Linehaul Savings</span>
                             <span class="value">$1.50</span>
                         </div>
                         <div class="benchmark-item">
@@ -1057,8 +989,7 @@ Savings</span>
                             <span class="value">50%</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Conversion 
-Improvement</span>
+                            <span class="label">Conversion Improvement</span>
                             <span class="value">10%</span>
                         </div>
                         <div class="benchmark-item">
@@ -1075,66 +1006,46 @@ Improvement</span>
                     <div class="results-content">
                         <div class="results-grid">
                             <div class="result-card">
-                                <div class="label">Projected Weekly 
-Shipping Cost</div>
-                                <div class="value cost" 
-id="zone-projected-cost">$65,000</div>
+                                <div class="label">Projected Weekly Shipping Cost</div>
+                                <div class="value cost" id="zone-projected-cost">$65,000</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Weekly Shipping 
-Savings</div>
-                                <div class="value savings" 
-id="zone-shipping-savings">$40,000</div>
+                                <div class="label">Weekly Shipping Savings</div>
+                                <div class="value savings" id="zone-shipping-savings">$40,000</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Weekly Damage 
-Cost</div>
-                                <div class="value cost" 
-id="zone-damage-cost">$5,313</div>
+                                <div class="label">Weekly Damage Cost</div>
+                                <div class="value cost" id="zone-damage-cost">$5,313</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Weekly Damage 
-Savings</div>
-                                <div class="value savings" 
-id="zone-damage-savings">$2,656</div>
+                                <div class="label">Weekly Damage Savings</div>
+                                <div class="value savings" id="zone-damage-savings">$2,656</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Additional Revenue from 
-Faster Delivery</div>
-                                <div class="value revenue" 
-id="zone-conversion-revenue">$52,500</div>
+                                <div class="label">Additional Revenue from Faster Delivery</div>
+                                <div class="value revenue" id="zone-conversion-revenue">$52,500</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Additional AOV Upsell 
-Revenue</div>
-                                <div class="value revenue" 
-id="zone-aov-revenue">$11,250</div>
+                                <div class="label">Additional AOV Upsell Revenue</div>
+                                <div class="value revenue" id="zone-aov-revenue">$11,250</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Total Weekly Value 
-Creation</div>
-                                <div class="value savings" 
-id="zone-weekly-value">$107,500</div>
+                                <div class="label">Total Weekly Value Creation</div>
+                                <div class="value savings" id="zone-weekly-value">$107,500</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Total Annual Value 
-Creation</div>
-                                <div class="value savings" 
-id="zone-total-value">$5,590,000</div>
+                                <div class="label">Total Annual Value Creation</div>
+                                <div class="value savings" id="zone-total-value">$5,590,000</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">WARP Time in 
-Transit</div>
-                                <div class="value cost" 
-id="zone-warp-transit">1.0 days</div>
-                                <div class="improvement">↑ 2.5 day 
-faster</div>
+                                <div class="label">WARP Time in Transit</div>
+                                <div class="value cost" id="zone-warp-transit">1.0 days</div>
+                                <div class="improvement">↑ 2.5 day faster</div>
                             </div>
                         </div>
                         
                         <div class="roi-card">
-                            <div class="label">Return on Investment 
-(ROI)</div>
+                            <div class="label">Return on Investment (ROI)</div>
                             <div class="value" id="zone-roi">102.4%</div>
                         </div>
                     </div>
@@ -1145,17 +1056,12 @@ faster</div>
             <div id="pool-point" class="tab-content">
                 <div class="calculator-header">
                     <h2>ROI Calculator</h2>
-                    <p>Calculate your Return on Investment (ROI) with 
-WARP's pool point distribution solutions for optimized store delivery 
-networks.</p>
+                    <p>Calculate your Return on Investment (ROI) with WARP's pool point distribution solutions for optimized store delivery networks.</p>
                     
                     <div class="info-box">
                         <div class="info-icon">i</div>
                         <div class="text">
-                            This calculator helps you understand the 
-financial impact of implementing WARP's pool distribution solutions. It 
-focuses on cost savings from consolidated freight injection, route 
-optimization, and operational efficiency improvements.
+                            This calculator helps you understand the financial impact of implementing WARP's pool distribution solutions. It focuses on cost savings from consolidated freight injection, route optimization, and operational efficiency improvements.
                         </div>
                         <a href="#" class="learn-more">Learn more</a>
                     </div>
@@ -1166,102 +1072,82 @@ optimization, and operational efficiency improvements.
                     <div class="input-grid">
                         <div class="input-group">
                             <label>Weekly Store Shipments</label>
-                            <input type="number" id="pool-shipments" 
-value="200">
+                            <input type="number" id="pool-shipments" value="200">
                         </div>
                         <div class="input-group">
                             <label>Cost per Store Delivery ($)</label>
-                            <input type="number" id="pool-cost" 
-value="150" step="0.01">
+                            <input type="number" id="pool-cost" value="150" step="0.01">
                         </div>
                         <div class="input-group">
                             <label>Store Delivery Locations</label>
-                            <input type="number" id="pool-locations" 
-value="50">
+                            <input type="number" id="pool-locations" value="50">
                         </div>
                         <div class="input-group">
                             <label>Pallets per Store Shipment</label>
-                            <input type="number" id="pool-pallets" 
-value="3">
+                            <input type="number" id="pool-pallets" value="3">
                         </div>
                         <div class="input-group">
                             <label>Miles per Store Delivery</label>
-                            <input type="number" id="pool-miles" 
-value="60">
+                            <input type="number" id="pool-miles" value="60">
                         </div>
                         <div class="input-group">
                             <label>Delivery Frequency per Week</label>
-                            <input type="number" id="pool-frequency" 
-value="3" step="0.1">
+                            <input type="number" id="pool-frequency" value="3" step="0.1">
                         </div>
                         <div class="input-group">
                             <label>Backroom Wait Time (hours)</label>
-                            <input type="number" id="pool-congestion" 
-value="1.5" step="0.1">
+                            <input type="number" id="pool-congestion" value="1.5" step="0.1">
                         </div>
                         <div class="input-group">
                             <label>On-Time Delivery Rate (%)</label>
-                            <input type="number" id="pool-ontime" 
-value="85" step="0.1">
+                            <input type="number" id="pool-ontime" value="85" step="0.1">
                         </div>
                         <div class="input-group">
-                            <label>Weekly Inventory Carrying Cost 
-($)</label>
-                            <input type="number" id="pool-inventory-cost" 
-value="2000">
+                            <label>Weekly Inventory Carrying Cost ($)</label>
+                            <input type="number" id="pool-inventory-cost" value="2000">
                         </div>
                         <div class="input-group">
                             <label>Driver Shortage Impact (%)</label>
-                            <input type="number" id="pool-driver-shortage" 
-value="10" step="0.1">
+                            <input type="number" id="pool-driver-shortage" value="10" step="0.1">
                         </div>
                         <div class="input-group">
                             <label>CO2 Emissions per Mile (lbs)</label>
-                            <input type="number" id="pool-emissions" 
-value="1.5" step="0.1">
+                            <input type="number" id="pool-emissions" value="1.5" step="0.1">
                         </div>
                     </div>
                     
-                    <button class="calculate-btn" 
-onclick="calculatePoolPoint()">Calculate ROI</button>
+                    <button class="calculate-btn" onclick="calculatePoolPoint()">Calculate ROI</button>
                 </div>
 
                 <div class="benchmarks-section">
                     <h4>WARP Optimization Benchmarks</h4>
                     <div class="benchmark-grid">
                         <div class="benchmark-item">
-                            <span class="label">Pool Point 
-Injections</span>
+                            <span class="label">Pool Point Injections</span>
                             <span class="value">Regional</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Linehaul Distance 
-Reduction</span>
+                            <span class="label">Linehaul Distance Reduction</span>
                             <span class="value">40%</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Final-Mile Route 
-Optimization</span>
+                            <span class="label">Final-Mile Route Optimization</span>
                             <span class="value">35%</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Stop Density 
-Improvement</span>
+                            <span class="label">Stop Density Improvement</span>
                             <span class="value">25%</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Delivery Frequency 
-Control</span>
+                            <span class="label">Delivery Frequency Control</span>
                             <span class="value">2.5x</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Cost per Stop 
-Reduction</span>
+                            <span class="label">Cost per Stop Reduction</span>
                             <span class="value">30%</span>
                         </div>
                         <div class="benchmark-item">
-                            <span class="label">Inventory Holding 
-Reduction</span>
+                            <span class="label">Inventory Holding Reduction</span>
                             <span class="value">15%</span>
                         </div>
                     </div>
@@ -1274,44 +1160,33 @@ Reduction</span>
                     <div class="results-content">
                         <div class="results-grid">
                             <div class="result-card">
-                                <div class="label">Projected Annual 
-Cost</div>
-                                <div class="value cost" 
-id="pool-projected-cost">$936,000</div>
+                                <div class="label">Projected Annual Cost</div>
+                                <div class="value cost" id="pool-projected-cost">$936,000</div>
                             </div>
                             <div class="result-card">
                                 <div class="label">Annual Savings</div>
-                                <div class="value savings" 
-id="pool-total-savings">$732,680</div>
+                                <div class="value savings" id="pool-total-savings">$732,680</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Current Annual 
-Cost</div>
-                                <div class="value cost" 
-id="pool-current-cost">$1,560,000</div>
+                                <div class="label">Current Annual Cost</div>
+                                <div class="value cost" id="pool-current-cost">$1,560,000</div>
                             </div>
                             <div class="result-card">
                                 <div class="label">Monthly Savings</div>
-                                <div class="value savings" 
-id="pool-monthly-savings">$61,057</div>
+                                <div class="value savings" id="pool-monthly-savings">$61,057</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Transportation 
-Savings</div>
-                                <div class="value savings" 
-id="pool-transport-savings">$624,000</div>
+                                <div class="label">Transportation Savings</div>
+                                <div class="value savings" id="pool-transport-savings">$624,000</div>
                             </div>
                             <div class="result-card">
-                                <div class="label">Operational 
-Improvements</div>
-                                <div class="value savings" 
-id="pool-operational-savings">$108,680</div>
+                                <div class="label">Operational Improvements</div>
+                                <div class="value savings" id="pool-operational-savings">$108,680</div>
                             </div>
                         </div>
                         
                         <div class="roi-card">
-                            <div class="label">Return on Investment 
-(ROI)</div>
+                            <div class="label">Return on Investment (ROI)</div>
                             <div class="value" id="pool-roi">47.0%</div>
                         </div>
                     </div>
@@ -1351,16 +1226,13 @@ id="pool-operational-savings">$108,680</div>
     </div>
 
     <!-- Supabase Client -->
-    <script 
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script>
         // Supabase Configuration
         const supabaseUrl = 'https://guxoatwimcuexshreomo.supabase.co'
-        const supabaseKey = 
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1eG9hdHdpbWN1ZXhzaHJlb21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg0NTQ2MjcsImV4cCI6MjA2NDAzMDYyN30.jTFkHcCBSudUEeQg32OEPwirkf5r4sVXHKUXjZu5qYw'
-        const supabase = window.supabase.createClient(supabaseUrl, 
-supabaseKey)
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1eG9hdHdpbWN1ZXhzaHJlb21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg0NTQ2MjcsImV4cCI6MjA2NDAzMDYyN30.jTFkHcCBSudUEeQg32OEPwirkf5r4sVXHKUXjZu5qYw'
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
         // Authentication and Session Management
         let currentUser = null;
@@ -1385,13 +1257,11 @@ supabaseKey)
 
         function updateSessionTimer() {
             if (sessionStartTime) {
-                const elapsed = Math.floor((Date.now() - sessionStartTime) 
-/ 1000);
+                const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
                 const minutes = Math.floor(elapsed / 60);
                 const seconds = elapsed % 60;
                 document.getElementById('session-time').textContent = 
-                    `${minutes.toString().padStart(2, 
-'0')}:${seconds.toString().padStart(2, '0')}`;
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }
         }
 
@@ -1409,28 +1279,24 @@ supabaseKey)
         }
 
         // Login functionality
-        document.getElementById('login-form').addEventListener('submit', 
-async function(e) {
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const loginBtn = document.getElementById('login-btn');
             const errorMessage = document.getElementById('error-message');
-            const successMessage = 
-document.getElementById('success-message');
+            const successMessage = document.getElementById('success-message');
             
             // Show loading state
             loginBtn.disabled = true;
-            loginBtn.innerHTML = '<span class="spinner"></span> Signing 
-in...';
+            loginBtn.innerHTML = '<span class="spinner"></span> Signing in...';
             errorMessage.style.display = 'none';
             successMessage.style.display = 'none';
             
             try {
                 // Supabase Authentication
-                const { data, error } = await 
-supabase.auth.signInWithPassword({
+                const { data, error } = await supabase.auth.signInWithPassword({
                     email: email,
                     password: password,
                 });
@@ -1445,8 +1311,7 @@ supabase.auth.signInWithPassword({
                         id: data.user.id,
                         email: data.user.email,
                         loginTime: new Date().toISOString(),
-                        sessionId: data.session?.access_token || 
-generateSessionId()
+                        sessionId: data.session?.access_token || generateSessionId()
                     };
                     
                     // Track login event
@@ -1457,12 +1322,9 @@ generateSessionId()
                     });
                     
                     // Show app, hide login
-                    document.getElementById('login-page').style.display = 
-'none';
-                    
-document.getElementById('app-container').classList.add('active');
-                    document.getElementById('user-email').textContent = 
-email;
+                    document.getElementById('login-page').style.display = 'none';
+                    document.getElementById('app-container').classList.add('active');
+                    document.getElementById('user-email').textContent = email;
                     
                     // Initialize session
                     initializeSession();
@@ -1470,20 +1332,15 @@ email;
                 
             } catch (error) {
                 console.error('Login error:', error);
-                let errorMsg = 'Invalid email or password. Please try 
-again.';
+                let errorMsg = 'Invalid email or password. Please try again.';
                 
                 // Handle specific Supabase error messages
                 if (error.message.includes('Invalid login credentials')) {
-                    errorMsg = 'Invalid email or password. Please check 
-your credentials.';
-                } else if (error.message.includes('Email not confirmed')) 
-{
-                    errorMsg = 'Please check your email and confirm your 
-account.';
+                    errorMsg = 'Invalid email or password. Please check your credentials.';
+                } else if (error.message.includes('Email not confirmed')) {
+                    errorMsg = 'Please check your email and confirm your account.';
                 } else if (error.message.includes('Too many requests')) {
-                    errorMsg = 'Too many login attempts. Please try again 
-later.';
+                    errorMsg = 'Too many login attempts. Please try again later.';
                 }
                 
                 errorMessage.textContent = errorMsg;
@@ -1495,26 +1352,22 @@ later.';
         });
 
         // Sign Up functionality
-        document.getElementById('signup-btn').addEventListener('click', 
-async function() {
+        document.getElementById('signup-btn').addEventListener('click', async function() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const signupBtn = document.getElementById('signup-btn');
             const errorMessage = document.getElementById('error-message');
-            const successMessage = 
-document.getElementById('success-message');
+            const successMessage = document.getElementById('success-message');
             
             if (!email || !password) {
-                errorMessage.textContent = 'Please enter both email and 
-password';
+                errorMessage.textContent = 'Please enter both email and password';
                 errorMessage.style.display = 'block';
                 successMessage.style.display = 'none';
                 return;
             }
 
             if (password.length < 6) {
-                errorMessage.textContent = 'Password must be at least 6 
-characters long';
+                errorMessage.textContent = 'Password must be at least 6 characters long';
                 errorMessage.style.display = 'block';
                 successMessage.style.display = 'none';
                 return;
@@ -1522,8 +1375,7 @@ characters long';
             
             // Show loading state
             signupBtn.disabled = true;
-            signupBtn.innerHTML = '<span class="spinner"></span> Creating 
-Account...';
+            signupBtn.innerHTML = '<span class="spinner"></span> Creating Account...';
             errorMessage.style.display = 'none';
             successMessage.style.display = 'none';
             
@@ -1538,8 +1390,7 @@ Account...';
                 }
                 
                 if (data.user) {
-                    successMessage.textContent = 'Account created 
-successfully! You can now sign in.';
+                    successMessage.textContent = 'Account created successfully! You can now sign in.';
                     successMessage.style.display = 'block';
                     // Clear form
                     document.getElementById('email').value = '';
@@ -1548,15 +1399,12 @@ successfully! You can now sign in.';
                 
             } catch (error) {
                 console.error('Sign up error:', error);
-                let errorMsg = 'Failed to create account. Please try 
-again.';
+                let errorMsg = 'Failed to create account. Please try again.';
                 
                 if (error.message.includes('already registered')) {
-                    errorMsg = 'This email is already registered. Please 
-sign in instead.';
+                    errorMsg = 'This email is already registered. Please sign in instead.';
                 } else if (error.message.includes('Password should be')) {
-                    errorMsg = 'Password should be at least 6 characters 
-long.';
+                    errorMsg = 'Password should be at least 6 characters long.';
                 }
                 
                 errorMessage.textContent = errorMsg;
@@ -1568,8 +1416,7 @@ long.';
         });
 
         // Logout functionality
-        document.getElementById('logout-btn').addEventListener('click', 
-async function() {
+        document.getElementById('logout-btn').addEventListener('click', async function() {
             if (currentUser) {
                 // Track logout event
                 await trackEvent('logout', {
@@ -1588,41 +1435,31 @@ async function() {
             sessionStartTime = null;
             
             // Show login, hide app
-            
-document.getElementById('app-container').classList.remove('active');
+            document.getElementById('app-container').classList.remove('active');
             document.getElementById('login-page').style.display = 'flex';
             
             // Reset form
             document.getElementById('login-form').reset();
-            document.getElementById('error-message').style.display = 
-'none';
-            document.getElementById('success-message').style.display = 
-'none';
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('success-message').style.display = 'none';
         });
 
         // Usage analytics overlay
-        document.getElementById('usage-btn').addEventListener('click', 
-function() {
-            
-document.getElementById('usage-overlay').classList.add('active');
+        document.getElementById('usage-btn').addEventListener('click', function() {
+            document.getElementById('usage-overlay').classList.add('active');
             updateUsageStats();
         });
 
-        document.getElementById('close-usage').addEventListener('click', 
-function() {
-            
-document.getElementById('usage-overlay').classList.remove('active');
+        document.getElementById('close-usage').addEventListener('click', function() {
+            document.getElementById('usage-overlay').classList.remove('active');
         });
 
         function updateUsageStats() {
-            document.getElementById('total-sessions').textContent = 
-usageStats.totalSessions;
-            document.getElementById('calculations-count').textContent = 
-usageStats.calculationsCount;
+            document.getElementById('total-sessions').textContent = usageStats.totalSessions;
+            document.getElementById('calculations-count').textContent = usageStats.calculationsCount;
             
             // Find most used calculator
-            const mostUsed = Object.keys(usageStats.tabUsage).reduce((a, 
-b) => 
+            const mostUsed = Object.keys(usageStats.tabUsage).reduce((a, b) => 
                 usageStats.tabUsage[a] > usageStats.tabUsage[b] ? a : b
             );
             const tabNames = {
@@ -1630,8 +1467,7 @@ b) =>
                 'zone-skipping': 'Zone Skipping',
                 'pool-point': 'Pool Distribution'
             };
-            document.getElementById('most-used').textContent = 
-tabNames[mostUsed];
+            document.getElementById('most-used').textContent = tabNames[mostUsed];
             
             if (currentUser) {
                 document.getElementById('last-login').textContent = 
@@ -1686,8 +1522,7 @@ tabNames[mostUsed];
             
             // Hide all tab contents
             const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => 
-content.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
             
             // Remove active class from all tabs
             const tabs = document.querySelectorAll('.tab');
@@ -1720,30 +1555,17 @@ content.classList.remove('active'));
             trackCalculationEvent('inbound');
             
             // Get input values
-            const vendors = 
-parseFloat(document.getElementById('inbound-vendors').value) || 0;
-            const shipments = 
-parseFloat(document.getElementById('inbound-shipments').value) || 0;
-            const costLTL = 
-parseFloat(document.getElementById('inbound-cost-ltl').value) || 0;
-            const pallets = 
-parseFloat(document.getElementById('inbound-pallets').value) || 0;
-            const accessorial = 
-parseFloat(document.getElementById('inbound-accessorial').value) || 0;
-            const appointment = 
-parseFloat(document.getElementById('inbound-appointment').value) || 0;
-            const utilization = 
-parseFloat(document.getElementById('inbound-utilization').value) / 100 || 
-0;
-            const doors = 
-parseFloat(document.getElementById('inbound-doors').value) || 0;
-            const labor = 
-parseFloat(document.getElementById('inbound-labor').value) || 0;
-            const damageRate = 
-parseFloat(document.getElementById('inbound-damage-rate').value) / 100 || 
-0;
-            const detention = 
-parseFloat(document.getElementById('inbound-detention').value) || 0;
+            const vendors = parseFloat(document.getElementById('inbound-vendors').value) || 0;
+            const shipments = parseFloat(document.getElementById('inbound-shipments').value) || 0;
+            const costLTL = parseFloat(document.getElementById('inbound-cost-ltl').value) || 0;
+            const pallets = parseFloat(document.getElementById('inbound-pallets').value) || 0;
+            const accessorial = parseFloat(document.getElementById('inbound-accessorial').value) || 0;
+            const appointment = parseFloat(document.getElementById('inbound-appointment').value) || 0;
+            const utilization = parseFloat(document.getElementById('inbound-utilization').value) / 100 || 0;
+            const doors = parseFloat(document.getElementById('inbound-doors').value) || 0;
+            const labor = parseFloat(document.getElementById('inbound-labor').value) || 0;
+            const damageRate = parseFloat(document.getElementById('inbound-damage-rate').value) / 100 || 0;
+            const detention = parseFloat(document.getElementById('inbound-detention').value) || 0;
 
             // WARP benchmarks (fixed)
             const milkrunCost = 100;
@@ -1756,55 +1578,37 @@ parseFloat(document.getElementById('inbound-detention').value) || 0;
             // Calculations
             const currentAnnualCost = shipments * costLTL * 52;
             const projectedAnnualCost = vendors * milkrunCost * 52;
-            const trailerUtilizationSavings = (trailerFillRate / 
-utilization) - 1;
-            const transportationSavings = currentAnnualCost * 
-trailerUtilizationSavings;
+            const trailerUtilizationSavings = (trailerFillRate / utilization) - 1;
+            const transportationSavings = currentAnnualCost * trailerUtilizationSavings;
             
             const accessorialAnnualCost = accessorial * 52;
-            const accessorialSavings = accessorialAnnualCost * 
-accessorialElimination;
+            const accessorialSavings = accessorialAnnualCost * accessorialElimination;
             
-            const appointmentAnnualCost = (appointment + (detention * 
-100)) * 52;
-            const appointmentSavings = appointmentAnnualCost * 
-congestionReduction;
+            const appointmentAnnualCost = (appointment + (detention * 100)) * 52;
+            const appointmentSavings = appointmentAnnualCost * congestionReduction;
             
             const laborAnnualCost = labor * 52;
             const laborSavings = laborAnnualCost * laborEfficiency;
             
-            const damageAnnualCost = shipments * costLTL * damageRate * 
-52;
+            const damageAnnualCost = shipments * costLTL * damageRate * 52;
             const damageSavings = damageAnnualCost * damageReduction;
 
-            const totalAnnualSavings = transportationSavings + 
-accessorialSavings + appointmentSavings + laborSavings + damageSavings;
+            const totalAnnualSavings = transportationSavings + accessorialSavings + appointmentSavings + laborSavings + damageSavings;
             const monthlySavings = totalAnnualSavings / 12;
             const roi = totalAnnualSavings / currentAnnualCost;
-            const operationalSavings = accessorialSavings + 
-appointmentSavings + laborSavings + damageSavings;
+            const operationalSavings = accessorialSavings + appointmentSavings + laborSavings + damageSavings;
 
             // Update display
-            document.getElementById('inbound-roi').textContent = 
-formatPercentage(roi);
-            document.getElementById('inbound-total-savings').textContent = 
-formatCurrency(totalAnnualSavings);
-            document.getElementById('inbound-monthly-savings').textContent 
-= formatCurrency(monthlySavings);
-            
-document.getElementById('inbound-transport-savings').textContent = 
-formatCurrency(transportationSavings);
-            document.getElementById('inbound-current-cost').textContent = 
-formatCurrency(currentAnnualCost);
-            document.getElementById('inbound-projected-cost').textContent 
-= formatCurrency(projectedAnnualCost);
-            
-document.getElementById('inbound-operational-savings').textContent = 
-formatCurrency(operationalSavings);
+            document.getElementById('inbound-roi').textContent = formatPercentage(roi);
+            document.getElementById('inbound-total-savings').textContent = formatCurrency(totalAnnualSavings);
+            document.getElementById('inbound-monthly-savings').textContent = formatCurrency(monthlySavings);
+            document.getElementById('inbound-transport-savings').textContent = formatCurrency(transportationSavings);
+            document.getElementById('inbound-current-cost').textContent = formatCurrency(currentAnnualCost);
+            document.getElementById('inbound-projected-cost').textContent = formatCurrency(projectedAnnualCost);
+            document.getElementById('inbound-operational-savings').textContent = formatCurrency(operationalSavings);
             
             // Show results and scroll to them
-            
-document.getElementById('inbound-results').classList.add('active');
+            document.getElementById('inbound-results').classList.add('active');
             scrollToResults('inbound-results');
         }
 
@@ -1813,22 +1617,14 @@ document.getElementById('inbound-results').classList.add('active');
             trackCalculationEvent('zone-skipping');
             
             // Get input values
-            const volume = 
-parseFloat(document.getElementById('zone-volume').value) || 0;
-            const cost = 
-parseFloat(document.getElementById('zone-cost').value) || 0;
-            const deliverySpeed = 
-parseFloat(document.getElementById('zone-delivery-speed').value) || 0;
-            const touches = 
-parseFloat(document.getElementById('zone-touches').value) || 0;
-            const damageRate = 
-parseFloat(document.getElementById('zone-damage-rate').value) / 100 || 0;
-            const abandonment = 
-parseFloat(document.getElementById('zone-abandonment').value) / 100 || 0;
-            const aov = 
-parseFloat(document.getElementById('zone-aov').value) || 0;
-            const cltv = 
-parseFloat(document.getElementById('zone-cltv').value) || 0;
+            const volume = parseFloat(document.getElementById('zone-volume').value) || 0;
+            const cost = parseFloat(document.getElementById('zone-cost').value) || 0;
+            const deliverySpeed = parseFloat(document.getElementById('zone-delivery-speed').value) || 0;
+            const touches = parseFloat(document.getElementById('zone-touches').value) || 0;
+            const damageRate = parseFloat(document.getElementById('zone-damage-rate').value) / 100 || 0;
+            const abandonment = parseFloat(document.getElementById('zone-abandonment').value) / 100 || 0;
+            const aov = parseFloat(document.getElementById('zone-aov').value) || 0;
+            const cltv = parseFloat(document.getElementById('zone-cltv').value) || 0;
 
             // WARP benchmarks (fixed)
             const zonePenalty = 2.50;
@@ -1842,52 +1638,34 @@ parseFloat(document.getElementById('zone-cltv').value) || 0;
             // Calculations
             const currentWeeklyCost = volume * (cost + zonePenalty);
             const projectedWeeklyCost = volume * (cost - bulkSavings);
-            const weeklyShippingSavings = currentWeeklyCost - 
-projectedWeeklyCost;
+            const weeklyShippingSavings = currentWeeklyCost - projectedWeeklyCost;
             
             const weeklyDamageCost = volume * damageRate * aov * 0.5;
-            const weeklyDamageSavings = weeklyDamageCost * 
-damageReduction;
+            const weeklyDamageSavings = weeklyDamageCost * damageReduction;
             
-            const additionalRevenueFromFasterDelivery = volume * 
-abandonment * aov * conversionImprovement;
-            const additionalAOVRevenue = volume * (1 - abandonment) * aov 
-* aovImprovement;
+            const additionalRevenueFromFasterDelivery = volume * abandonment * aov * conversionImprovement;
+            const additionalAOVRevenue = volume * (1 - abandonment) * aov * aovImprovement;
             
-            const totalWeeklyValue = weeklyShippingSavings + 
-weeklyDamageSavings + additionalRevenueFromFasterDelivery + 
-additionalAOVRevenue;
+            const totalWeeklyValue = weeklyShippingSavings + weeklyDamageSavings + additionalRevenueFromFasterDelivery + additionalAOVRevenue;
             const totalAnnualValue = totalWeeklyValue * 52;
             const roi = totalAnnualValue / (currentWeeklyCost * 52);
             
-            const warpTransitTime = Math.max(1.0, deliverySpeed - 
-speedImprovement);
+            const warpTransitTime = Math.max(1.0, deliverySpeed - speedImprovement);
 
             // Update display
-            document.getElementById('zone-roi').textContent = 
-formatPercentage(roi);
-            document.getElementById('zone-total-value').textContent = 
-formatCurrency(totalAnnualValue);
-            document.getElementById('zone-shipping-savings').textContent = 
-formatCurrency(weeklyShippingSavings);
-            document.getElementById('zone-projected-cost').textContent = 
-formatCurrency(projectedWeeklyCost);
-            document.getElementById('zone-damage-cost').textContent = 
-formatCurrency(weeklyDamageCost);
-            document.getElementById('zone-damage-savings').textContent = 
-formatCurrency(weeklyDamageSavings);
-            document.getElementById('zone-conversion-revenue').textContent 
-= formatCurrency(additionalRevenueFromFasterDelivery);
-            document.getElementById('zone-aov-revenue').textContent = 
-formatCurrency(additionalAOVRevenue);
-            document.getElementById('zone-weekly-value').textContent = 
-formatCurrency(totalWeeklyValue);
-            document.getElementById('zone-warp-transit').textContent = 
-warpTransitTime.toFixed(1) + ' days';
+            document.getElementById('zone-roi').textContent = formatPercentage(roi);
+            document.getElementById('zone-total-value').textContent = formatCurrency(totalAnnualValue);
+            document.getElementById('zone-shipping-savings').textContent = formatCurrency(weeklyShippingSavings);
+            document.getElementById('zone-projected-cost').textContent = formatCurrency(projectedWeeklyCost);
+            document.getElementById('zone-damage-cost').textContent = formatCurrency(weeklyDamageCost);
+            document.getElementById('zone-damage-savings').textContent = formatCurrency(weeklyDamageSavings);
+            document.getElementById('zone-conversion-revenue').textContent = formatCurrency(additionalRevenueFromFasterDelivery);
+            document.getElementById('zone-aov-revenue').textContent = formatCurrency(additionalAOVRevenue);
+            document.getElementById('zone-weekly-value').textContent = formatCurrency(totalWeeklyValue);
+            document.getElementById('zone-warp-transit').textContent = warpTransitTime.toFixed(1) + ' days';
             
             // Show results and scroll to them
-            
-document.getElementById('zone-results').classList.add('active');
+            document.getElementById('zone-results').classList.add('active');
             scrollToResults('zone-results');
         }
 
@@ -1896,29 +1674,17 @@ document.getElementById('zone-results').classList.add('active');
             trackCalculationEvent('pool-point');
             
             // Get input values
-            const shipments = 
-parseFloat(document.getElementById('pool-shipments').value) || 0;
-            const cost = 
-parseFloat(document.getElementById('pool-cost').value) || 0;
-            const locations = 
-parseFloat(document.getElementById('pool-locations').value) || 0;
-            const pallets = 
-parseFloat(document.getElementById('pool-pallets').value) || 0;
-            const miles = 
-parseFloat(document.getElementById('pool-miles').value) || 0;
-            const frequency = 
-parseFloat(document.getElementById('pool-frequency').value) || 0;
-            const congestion = 
-parseFloat(document.getElementById('pool-congestion').value) || 0;
-            const onTime = 
-parseFloat(document.getElementById('pool-ontime').value) / 100 || 0;
-            const inventoryCost = 
-parseFloat(document.getElementById('pool-inventory-cost').value) || 0;
-            const driverShortage = 
-parseFloat(document.getElementById('pool-driver-shortage').value) / 100 || 
-0;
-            const emissions = 
-parseFloat(document.getElementById('pool-emissions').value) || 0;
+            const shipments = parseFloat(document.getElementById('pool-shipments').value) || 0;
+            const cost = parseFloat(document.getElementById('pool-cost').value) || 0;
+            const locations = parseFloat(document.getElementById('pool-locations').value) || 0;
+            const pallets = parseFloat(document.getElementById('pool-pallets').value) || 0;
+            const miles = parseFloat(document.getElementById('pool-miles').value) || 0;
+            const frequency = parseFloat(document.getElementById('pool-frequency').value) || 0;
+            const congestion = parseFloat(document.getElementById('pool-congestion').value) || 0;
+            const onTime = parseFloat(document.getElementById('pool-ontime').value) / 100 || 0;
+            const inventoryCost = parseFloat(document.getElementById('pool-inventory-cost').value) || 0;
+            const driverShortage = parseFloat(document.getElementById('pool-driver-shortage').value) / 100 || 0;
+            const emissions = parseFloat(document.getElementById('pool-emissions').value) || 0;
 
             // WARP benchmarks (fixed)
             const costReduction = 0.4;
@@ -1930,45 +1696,29 @@ parseFloat(document.getElementById('pool-emissions').value) || 0;
 
             // Calculations
             const currentAnnualCost = shipments * cost * 52;
-            const projectedAnnualCost = shipments * cost * (1 - 
-costReduction) * 52;
-            const transportationSavings = currentAnnualCost - 
-projectedAnnualCost;
+            const projectedAnnualCost = shipments * cost * (1 - costReduction) * 52;
+            const transportationSavings = currentAnnualCost - projectedAnnualCost;
             
-            const inventoryHoldingReduction = inventoryCost * 
-inventoryReduction * 52;
-            const laborSavings = frequency * 100 * 0.3 * 52; // Simplified 
-labor calculation
-            const carbonReduction = shipments * pallets * miles * 
-emissions * 0.4 * 52;
+            const inventoryHoldingReduction = inventoryCost * inventoryReduction * 52;
+            const laborSavings = frequency * 100 * 0.3 * 52; // Simplified labor calculation
+            const carbonReduction = shipments * pallets * miles * emissions * 0.4 * 52;
 
-            const totalAnnualSavings = transportationSavings + 
-inventoryHoldingReduction + laborSavings;
+            const totalAnnualSavings = transportationSavings + inventoryHoldingReduction + laborSavings;
             const monthlySavings = totalAnnualSavings / 12;
             const roi = totalAnnualSavings / currentAnnualCost;
-            const operationalSavings = inventoryHoldingReduction + 
-laborSavings;
+            const operationalSavings = inventoryHoldingReduction + laborSavings;
 
             // Update display
-            document.getElementById('pool-roi').textContent = 
-formatPercentage(roi);
-            document.getElementById('pool-total-savings').textContent = 
-formatCurrency(totalAnnualSavings);
-            document.getElementById('pool-monthly-savings').textContent = 
-formatCurrency(monthlySavings);
-            document.getElementById('pool-transport-savings').textContent 
-= formatCurrency(transportationSavings);
-            document.getElementById('pool-current-cost').textContent = 
-formatCurrency(currentAnnualCost);
-            document.getElementById('pool-projected-cost').textContent = 
-formatCurrency(projectedAnnualCost);
-            
-document.getElementById('pool-operational-savings').textContent = 
-formatCurrency(operationalSavings);
+            document.getElementById('pool-roi').textContent = formatPercentage(roi);
+            document.getElementById('pool-total-savings').textContent = formatCurrency(totalAnnualSavings);
+            document.getElementById('pool-monthly-savings').textContent = formatCurrency(monthlySavings);
+            document.getElementById('pool-transport-savings').textContent = formatCurrency(transportationSavings);
+            document.getElementById('pool-current-cost').textContent = formatCurrency(currentAnnualCost);
+            document.getElementById('pool-projected-cost').textContent = formatCurrency(projectedAnnualCost);
+            document.getElementById('pool-operational-savings').textContent = formatCurrency(operationalSavings);
             
             // Show results and scroll to them
-            
-document.getElementById('pool-results').classList.add('active');
+            document.getElementById('pool-results').classList.add('active');
             scrollToResults('pool-results');
         }
 
@@ -1996,8 +1746,7 @@ document.getElementById('pool-results').classList.add('active');
 
         // Check for existing session on page load
         document.addEventListener('DOMContentLoaded', async function() {
-            const { data: { session } } = await 
-supabase.auth.getSession();
+            const { data: { session } } = await supabase.auth.getSession();
             
             if (session && session.user) {
                 // User is already logged in
@@ -2009,12 +1758,9 @@ supabase.auth.getSession();
                 };
                 
                 // Show app, hide login
-                document.getElementById('login-page').style.display = 
-'none';
-                
-document.getElementById('app-container').classList.add('active');
-                document.getElementById('user-email').textContent = 
-session.user.email;
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('app-container').classList.add('active');
+                document.getElementById('user-email').textContent = session.user.email;
                 
                 // Initialize session
                 initializeSession();
@@ -2036,10 +1782,8 @@ session.user.email;
                 // Handle sign out
                 currentUser = null;
                 sessionStartTime = null;
-                
-document.getElementById('app-container').classList.remove('active');
-                document.getElementById('login-page').style.display = 
-'flex';
+                document.getElementById('app-container').classList.remove('active');
+                document.getElementById('login-page').style.display = 'flex';
             }
         });
     </script>
