@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const { message } = req.body;
 
   try {
-    const response = await 
+    const openaiRes = await 
 fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -14,20 +14,19 @@ fetch('https://api.openai.com/v1/chat/completions', {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-4', // or 'gpt-3.5-turbo'
+        model: 'gpt-3.5-turbo',
         messages: [
           { role: 'system', content: 'You are a helpful assistant.' },
           { role: 'user', content: message },
         ],
-        temperature: 0.7,
-        max_tokens: 1000
       }),
     });
 
-    const data = await response.json();
+    const data = await openaiRes.json();
     return res.status(200).json({ reply: data.choices[0].message.content 
 });
   } catch (err) {
     return res.status(500).json({ error: 'Failed to fetch from OpenAI' });
   }
 }
+
