@@ -28,7 +28,6 @@ fetch('https://api.openai.com/v1/chat/completions', {
     const data = await response.json();
     return res.status(200).json({ reply: data.choices[0].message.content 
 });
-
   } catch (err) {
     return res.status(500).json({ error: 'OpenAI call failed.' });
   }
